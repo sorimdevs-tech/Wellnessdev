@@ -1,5 +1,5 @@
 // (Removed misplaced sendOtp and verifyOtp from top-level)
-const API_BASE_URL = "http://localhost:8001";
+const API_BASE_URL = "http://localhost:8000";
 
 export interface ApiResponse<T> {
   data?: T;
