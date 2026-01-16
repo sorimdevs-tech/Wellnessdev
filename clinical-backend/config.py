@@ -15,11 +15,12 @@ class Settings(BaseSettings):
     sender_password: str = ""
     
     # Twilio WhatsApp configuration
-    twilio_account_sid: str = ""
-    twilio_auth_token: str = ""
+    twilio_account_sid: str = "ACc0b0230c7f63f4f21fd2805dd49b6031"
+    twilio_auth_token: str = "79088266838a4772ce86edbfce36b03e"
     whatsapp_from: str = ""
     
     class Config:
         env_file = ".env"
 
 settings = Settings()
+
