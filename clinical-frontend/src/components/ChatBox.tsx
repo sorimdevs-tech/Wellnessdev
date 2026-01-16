@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { apiClient } from "../services/api";
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "https://wellnessdev.onrender.com";
 
 interface ChatMessage {
   _id?: string;
