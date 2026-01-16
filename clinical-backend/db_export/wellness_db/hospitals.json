@@ -1,0 +1,97 @@
+[
+  {
+    "_id": {
+      "$oid": "694a4888f473e7f5db5a2422"
+    },
+    "name": "City Care Hospital",
+    "location": "MG Road",
+    "city": "Bengaluru",
+    "rating": 4.5,
+    "specialties": [
+      "Cardiology",
+      "Orthopedics",
+      "General Medicine"
+    ],
+    "phone": "+91-80-1234-5678",
+    "website": "https://citycare-hospital.example.com",
+    "createdAt": {
+      "$date": "2025-12-23T07:45:12.987000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694a4888f473e7f5db5a2423"
+    },
+    "name": "Expresscare Medical Clinic",
+    "location": "Greams Road",
+    "city": "Chennai",
+    "rating": 4.8,
+    "specialties": [
+      "Cardiology",
+      "Orthopedic",
+      "Neuro"
+    ],
+    "phone": "+91-44-5678-9012",
+    "website": "https://expresscare-clinic.example.com",
+    "createdAt": {
+      "$date": "2025-12-23T07:45:12.987000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694a4888f473e7f5db5a2424"
+    },
+    "name": "Fortis Malar Hospital",
+    "location": "Adyar",
+    "city": "Chennai",
+    "rating": 4.6,
+    "specialties": [
+      "Heart Care",
+      "ICU",
+      "General"
+    ],
+    "phone": "+91-44-3456-7890",
+    "website": "https://fortis-malar.example.com",
+    "createdAt": {
+      "$date": "2025-12-23T07:45:12.987000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694a4888f473e7f5db5a2425"
+    },
+    "name": "SIMS Hospital",
+    "location": "Vadapalani",
+    "city": "Chennai",
+    "rating": 4.5,
+    "specialties": [
+      "Emergency",
+      "Dermatology",
+      "Surgery"
+    ],
+    "phone": "+91-44-2345-6789",
+    "website": "https://sims-hospital.example.com",
+    "createdAt": {
+      "$date": "2025-12-23T07:45:12.987000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694a4888f473e7f5db5a2426"
+    },
+    "name": "Apollo Hospitals",
+    "location": "Thousand Lights",
+    "city": "Chennai",
+    "rating": 4.9,
+    "specialties": [
+      "Neurology",
+      "Pediatrics",
+      "Oncology"
+    ],
+    "phone": "+91-44-1234-5678",
+    "website": "https://apollo-hospitals.example.com",
+    "createdAt": {
+      "$date": "2025-12-23T07:45:12.987000"
+    }
+  }
+]

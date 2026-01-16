@@ -1,0 +1,885 @@
+[
+  {
+    "_id": {
+      "$oid": "6957995fefd1d2adfbbdd1e5"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "type": "verification_pending",
+    "title": "⏳ Profile Pending Verification",
+    "message": "Your doctor profile at Fortis Malar Hospital is pending verification by our Clinical Admin team. You'll receive a notification once approved.",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:09:35.754000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957995fefd1d2adfbbdd1e6"
+    },
+    "user_id": "694a4888f473e7f5db5a2421",
+    "user_type": "clinical_admin",
+    "type": "new_doctor_enrollment",
+    "title": "🩺 New Doctor Enrollment",
+    "message": "Dr. doctorcity has enrolled at Fortis Malar Hospital and is awaiting verification.",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:09:35.756000"
+    },
+    "doctor_id": "69579917efd1d2adfbbdd1e4",
+    "hospital_id": "694a4888f473e7f5db5a2424"
+  },
+  {
+    "_id": {
+      "$oid": "695799fdefd1d2adfbbdd1ed"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "✅ Doctor Verification Approved",
+    "message": "🎉 Congratulations! Your doctor profile has been verified by the Clinical Admin. You can now act as a doctor and receive patient appointments. Admin comments: Your credentials have been reviewed and approved.",
+    "type": "verification_approved",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:12:13.478000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579a43efd1d2adfbbdd1f2"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 02, 2026 at 05:43 PM. Please approve or reject this request. Notes: demo",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:13:23.976000"
+    },
+    "appointmentId": "69579a43efd1d2adfbbdd1f1"
+  },
+  {
+    "_id": {
+      "$oid": "69579a43efd1d2adfbbdd1f3"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 02, 2026 at 05:43 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:13:23.978000"
+    },
+    "appointmentId": "69579a43efd1d2adfbbdd1f1"
+  },
+  {
+    "_id": {
+      "$oid": "69579bbaefd1d2adfbbdd1f5"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "✅ Doctor Verification Approved",
+    "message": "🎉 Congratulations! Your doctor profile has been verified by the Clinical Admin. You can now act as a doctor and receive patient appointments. Admin comments: Your credentials have been reviewed and approved.",
+    "type": "verification_approved",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:19:38.928000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579ca7efd1d2adfbbdd1f7"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 02, 2026 at 06:53 PM. Please approve or reject this request. Notes: demo",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:23:35.918000"
+    },
+    "appointmentId": "69579ca7efd1d2adfbbdd1f6"
+  },
+  {
+    "_id": {
+      "$oid": "69579ca7efd1d2adfbbdd1f8"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 02, 2026 at 06:53 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:23:35.919000"
+    },
+    "appointmentId": "69579ca7efd1d2adfbbdd1f6"
+  },
+  {
+    "_id": {
+      "$oid": "69579d90e1cf869175eb77a7"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Approved (TEST)",
+    "message": "Your appointment with Dr. doctorcity on January 02, 2026 at 05:43 PM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:27:28.125000"
+    },
+    "appointmentId": "69579a43efd1d2adfbbdd1f1"
+  },
+  {
+    "_id": {
+      "$oid": "69579e2befd1d2adfbbdd1fd"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 09, 2026 at 03:59 PM. Please approve or reject this request. Notes: demo",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:30:03.499000"
+    },
+    "appointmentId": "69579e2befd1d2adfbbdd1fc"
+  },
+  {
+    "_id": {
+      "$oid": "69579e2befd1d2adfbbdd1fe"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 09, 2026 at 03:59 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:30:03.500000"
+    },
+    "appointmentId": "69579e2befd1d2adfbbdd1fc"
+  },
+  {
+    "_id": {
+      "$oid": "69579e99efd1d2adfbbdd201"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 02, 2026 at 05:01 PM. Please approve or reject this request. Notes: demo\n",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:31:53.651000"
+    },
+    "appointmentId": "69579e99efd1d2adfbbdd200"
+  },
+  {
+    "_id": {
+      "$oid": "69579e99efd1d2adfbbdd202"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 02, 2026 at 05:01 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:31:53.652000"
+    },
+    "appointmentId": "69579e99efd1d2adfbbdd200"
+  },
+  {
+    "_id": {
+      "$oid": "69579f0b74907416508bb33b"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. doctorcity on January 05, 2026 at 10:00 AM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:33:47.772000"
+    },
+    "appointmentId": "69579f0b74907416508bb33a"
+  },
+  {
+    "_id": {
+      "$oid": "69579f2defd1d2adfbbdd205"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 02, 2026 at 09:04 PM. Please approve or reject this request. Notes: demo",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:34:21.252000"
+    },
+    "appointmentId": "69579f2defd1d2adfbbdd204"
+  },
+  {
+    "_id": {
+      "$oid": "69579f2defd1d2adfbbdd206"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 02, 2026 at 09:04 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:34:21.254000"
+    },
+    "appointmentId": "69579f2defd1d2adfbbdd204"
+  },
+  {
+    "_id": {
+      "$oid": "6957a455f6c874e32783a34f"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 02, 2026 at 05:26 PM. Please approve or reject this request. Notes: demo",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:56:21.055000"
+    },
+    "appointmentId": "6957a455f6c874e32783a34e"
+  },
+  {
+    "_id": {
+      "$oid": "6957a455f6c874e32783a350"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 02, 2026 at 05:26 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:56:21.056000"
+    },
+    "appointmentId": "6957a455f6c874e32783a34e"
+  },
+  {
+    "_id": {
+      "$oid": "6957a4a3f6c874e32783a353"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. doctorcity on January 02, 2026 at 05:26 PM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:57:39.989000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a4bef6c874e32783a355"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Completed",
+    "message": "Your appointment with Dr. doctorcity on January 02, 2026 at 06:53 PM has been completed. Thank you for visiting!",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T10:58:06.417000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a550f6c874e32783a35a"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "type": "verification_pending",
+    "title": "⏳ Profile Pending Verification",
+    "message": "Your doctor profile at Fortis Malar Hospital is pending verification by our Clinical Admin team. You'll receive a notification once approved.",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:00:32.446000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a550f6c874e32783a35b"
+    },
+    "user_id": "694a4888f473e7f5db5a2421",
+    "user_type": "clinical_admin",
+    "type": "new_doctor_enrollment",
+    "title": "🩺 New Doctor Enrollment",
+    "message": "Dr. doctor2 has enrolled at Fortis Malar Hospital and is awaiting verification.",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:00:32.450000"
+    },
+    "doctor_id": "6957a518f6c874e32783a359",
+    "hospital_id": "694a4888f473e7f5db5a2424"
+  },
+  {
+    "_id": {
+      "$oid": "6957a5bbf6c874e32783a360"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "title": "✅ Doctor Verification Approved",
+    "message": "🎉 Congratulations! Your doctor profile has been verified by the Clinical Admin. You can now act as a doctor and receive patient appointments. Admin comments: Your credentials have been reviewed and approved.",
+    "type": "verification_approved",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:02:19.900000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a5d2f6c874e32783a363"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient doctor2 has requested an appointment with you on January 02, 2026 at 05:32 PM. Please approve or reject this request. Notes: demo",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:02:42.823000"
+    },
+    "appointmentId": "6957a5d2f6c874e32783a362"
+  },
+  {
+    "_id": {
+      "$oid": "6957a5d2f6c874e32783a364"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 02, 2026 at 05:32 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:02:42.824000"
+    },
+    "appointmentId": "6957a5d2f6c874e32783a362"
+  },
+  {
+    "_id": {
+      "$oid": "6957a5e2f6c874e32783a366"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. doctorcity on January 02, 2026 at 05:32 PM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:02:58.396000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a75a2708b228f15151ff"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "title": "Appointment Completed",
+    "message": "Your appointment with Dr. doctorcity on January 02, 2026 at 05:32 PM has been completed. Thank you for visiting!",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:09:14.197000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a7772708b228f1515202"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient doctor2 has requested an appointment with you on January 02, 2026 at 05:39 PM. Please approve or reject this request. Notes: demo",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:09:43.036000"
+    },
+    "appointmentId": "6957a7772708b228f1515201"
+  },
+  {
+    "_id": {
+      "$oid": "6957a7772708b228f1515203"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 02, 2026 at 05:39 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:09:43.038000"
+    },
+    "appointmentId": "6957a7772708b228f1515201"
+  },
+  {
+    "_id": {
+      "$oid": "6957a77d2708b228f1515205"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. doctorcity on January 02, 2026 at 05:39 PM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:09:49.105000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957b2ff2708b228f151520a"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 03, 2026 at 09:28 AM. Please approve or reject this request. Notes: sample",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-02T11:58:55.688000"
+    },
+    "appointmentId": "6957b2ff2708b228f1515209"
+  },
+  {
+    "_id": {
+      "$oid": "6957b2ff2708b228f151520b"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctor2 for January 03, 2026 at 09:28 AM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T11:58:55.691000"
+    },
+    "appointmentId": "6957b2ff2708b228f1515209"
+  },
+  {
+    "_id": {
+      "$oid": "6957b7a02708b228f1515213"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 02, 2026 at 06:48 PM. Please approve or reject this request. Notes: test appoinment",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-02T12:18:40.102000"
+    },
+    "appointmentId": "6957b7a02708b228f1515212"
+  },
+  {
+    "_id": {
+      "$oid": "6957b7a02708b228f1515214"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctorcity for January 02, 2026 at 06:48 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-02T12:18:40.102000"
+    },
+    "appointmentId": "6957b7a02708b228f1515212"
+  },
+  {
+    "_id": {
+      "$oid": "6958c6a39c5eb492028b41c6"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient pulimurugan user has requested an appointment with you on January 03, 2026 at 01:17 PM. Please approve or reject this request. Notes: demo",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-03T07:34:59.539000"
+    },
+    "appointmentId": "6958c6a39c5eb492028b41c5"
+  },
+  {
+    "_id": {
+      "$oid": "6958c6a39c5eb492028b41c7"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. doctor2 for January 03, 2026 at 01:17 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-03T07:34:59.541000"
+    },
+    "appointmentId": "6958c6a39c5eb492028b41c5"
+  },
+  {
+    "_id": {
+      "$oid": "6958c7239c5eb492028b41cb"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. doctor2 on January 03, 2026 at 01:17 PM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-03T07:37:07.697000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6958c7279c5eb492028b41cd"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "user_type": "user",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. doctor2 on January 03, 2026 at 09:28 AM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-03T07:37:11.751000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6966261d5a1ca1375a7b51a0"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "type": "verification_pending",
+    "title": "⏳ Profile Pending Verification",
+    "message": "Your doctor profile at City Care Hospital is pending verification by our Clinical Admin team. You'll receive a notification once approved.",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:01:49.495000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6966261d5a1ca1375a7b51a1"
+    },
+    "user_id": "694a4888f473e7f5db5a2421",
+    "user_type": "clinical_admin",
+    "type": "new_doctor_enrollment",
+    "title": "🩺 New Doctor Enrollment",
+    "message": "Dr. rathinam has enrolled at City Care Hospital and is awaiting verification.",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:01:49.500000"
+    },
+    "doctor_id": "696625215a1ca1375a7b519d",
+    "hospital_id": "694a4888f473e7f5db5a2422"
+  },
+  {
+    "_id": {
+      "$oid": "696626545a1ca1375a7b51a4"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "✅ Doctor Verification Approved",
+    "message": "🎉 Congratulations! Your doctor profile has been verified by the Clinical Admin. You can now act as a doctor and receive patient appointments. Admin comments: Your credentials have been reviewed and approved.",
+    "type": "verification_approved",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:02:44.529000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "696626865a1ca1375a7b51a6"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient Tamil has requested an appointment with you on January 13, 2026 at 05:33 PM. Please approve or reject this request. Notes: sample",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:03:34.457000"
+    },
+    "appointmentId": "696626865a1ca1375a7b51a5"
+  },
+  {
+    "_id": {
+      "$oid": "696626865a1ca1375a7b51a7"
+    },
+    "user_id": "696625865a1ca1375a7b519f",
+    "user_type": "user",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. rathinam for January 13, 2026 at 05:33 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:03:34.459000"
+    },
+    "appointmentId": "696626865a1ca1375a7b51a5"
+  },
+  {
+    "_id": {
+      "$oid": "696626d95a1ca1375a7b51aa"
+    },
+    "user_id": "696625865a1ca1375a7b519f",
+    "user_type": "user",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. rathinam on January 13, 2026 at 05:33 PM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:04:57.745000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "696627aa5a1ca1375a7b51ae"
+    },
+    "user_id": "696625865a1ca1375a7b519f",
+    "user_type": "user",
+    "title": "Appointment Completed",
+    "message": "Your appointment with Dr. rathinam on January 13, 2026 at 05:33 PM has been completed. Thank you for visiting!",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:08:26.644000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6966291f5a1ca1375a7b51b2"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "type": "hospital_unenrollment",
+    "title": "🏥 Hospital Unenrollment",
+    "message": "You have been unenrolled from City Care Hospital. Your enrollment at SIMS Hospital is now pending verification.",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:14:39.392000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6966291f5a1ca1375a7b51b3"
+    },
+    "user_id": "694a4888f473e7f5db5a2421",
+    "user_type": "clinical_admin",
+    "type": "doctor_hospital_switch",
+    "title": "🔄 Doctor Hospital Switch",
+    "message": "Dr. rathinam has unenrolled from City Care Hospital and is now enrolling at SIMS Hospital. New verification required.",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:14:39.398000"
+    },
+    "doctor_id": "696625215a1ca1375a7b519d",
+    "previous_hospital_id": "694a4888f473e7f5db5a2422",
+    "new_hospital_id": "694a4888f473e7f5db5a2425"
+  },
+  {
+    "_id": {
+      "$oid": "6966291f5a1ca1375a7b51b4"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "type": "verification_pending",
+    "title": "⏳ Profile Pending Verification",
+    "message": "Your doctor profile at SIMS Hospital is pending verification by our Clinical Admin team. You'll receive a notification once approved.",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:14:39.405000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6966291f5a1ca1375a7b51b5"
+    },
+    "user_id": "694a4888f473e7f5db5a2421",
+    "user_type": "clinical_admin",
+    "type": "new_doctor_enrollment",
+    "title": "🩺 New Doctor Enrollment",
+    "message": "Dr. rathinam has enrolled at SIMS Hospital and is awaiting verification.",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:14:39.411000"
+    },
+    "doctor_id": "696625215a1ca1375a7b519d",
+    "hospital_id": "694a4888f473e7f5db5a2425"
+  },
+  {
+    "_id": {
+      "$oid": "69662aa65a1ca1375a7b51b9"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "✅ Doctor Verification Approved",
+    "message": "🎉 Congratulations! Your doctor profile has been verified by the Clinical Admin. You can now act as a doctor and receive patient appointments. Admin comments: confirmed",
+    "type": "verification_approved",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:21:10.508000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69662ad95a1ca1375a7b51bb"
+    },
+    "user_id": "69608d521fd1720d6c7720e4",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient rathinam has requested an appointment with you on January 13, 2026 at 05:51 PM. Please approve or reject this request. Notes: test results",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:22:01.796000"
+    },
+    "appointmentId": "69662ad95a1ca1375a7b51ba"
+  },
+  {
+    "_id": {
+      "$oid": "69662ad95a1ca1375a7b51bc"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. Dr. Rajesh Kumar for January 13, 2026 at 05:51 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:22:01.798000"
+    },
+    "appointmentId": "69662ad95a1ca1375a7b51ba"
+  },
+  {
+    "_id": {
+      "$oid": "69662b2a5a1ca1375a7b51bf"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. Dr. Rajesh Kumar on January 13, 2026 at 05:51 PM has been approved.",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:23:22.454000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69662b6b5a1ca1375a7b51c2"
+    },
+    "user_id": "69608d521fd1720d6c7720e4",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient rathinam has requested an appointment with you on January 13, 2026 at 04:59 PM. Please approve or reject this request. Notes: sample booking\n",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:24:27.198000"
+    },
+    "appointmentId": "69662b6b5a1ca1375a7b51c1"
+  },
+  {
+    "_id": {
+      "$oid": "69662b6b5a1ca1375a7b51c3"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. Dr. Rajesh Kumar for January 13, 2026 at 04:59 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:24:27.200000"
+    },
+    "appointmentId": "69662b6b5a1ca1375a7b51c1"
+  },
+  {
+    "_id": {
+      "$oid": "69662b7b5a1ca1375a7b51c6"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. Dr. Rajesh Kumar on January 13, 2026 at 04:59 PM has been approved.",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:24:43.210000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69662bd75a1ca1375a7b51c9"
+    },
+    "user_id": "69608d521fd1720d6c7720e4",
+    "user_type": "doctor",
+    "title": "New Appointment Request",
+    "message": "Patient rathinam has requested an appointment with you on January 13, 2026 at 05:03 PM. Please approve or reject this request. Notes: sample",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:26:15.605000"
+    },
+    "appointmentId": "69662bd75a1ca1375a7b51c8"
+  },
+  {
+    "_id": {
+      "$oid": "69662bd75a1ca1375a7b51ca"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "Appointment Requested",
+    "message": "Your appointment request with Dr. Dr. Rajesh Kumar for January 13, 2026 at 05:03 PM is pending doctor approval.",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:26:15.606000"
+    },
+    "appointmentId": "69662bd75a1ca1375a7b51c8"
+  },
+  {
+    "_id": {
+      "$oid": "69662bea5a1ca1375a7b51cc"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "Appointment Approved",
+    "message": "Your appointment with Dr. Dr. Rajesh Kumar on January 13, 2026 at 05:03 PM has been approved.",
+    "type": "appointment",
+    "read": false,
+    "createdAt": {
+      "$date": "2026-01-13T11:26:34.132000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69662c7e5a1ca1375a7b51ce"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "user_type": "doctor",
+    "title": "Appointment Rejected",
+    "message": "Your appointment with Dr. Dr. Rajesh Kumar on January 13, 2026 at 05:03 PM has been rejected. Reason: I'm out of clininc",
+    "type": "appointment",
+    "read": true,
+    "createdAt": {
+      "$date": "2026-01-13T11:29:02.945000"
+    }
+  }
+]

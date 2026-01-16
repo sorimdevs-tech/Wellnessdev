@@ -1,0 +1,147 @@
+[
+  {
+    "_id": {
+      "$oid": "69579917efd1d2adfbbdd1e4"
+    },
+    "name": "doctorcity",
+    "specialization": "Cardiology",
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "createdAt": {
+      "$date": "2026-01-02T10:08:23.102000"
+    },
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "available_time_end": "21:39",
+    "available_time_start": "10:39",
+    "consultation_fee": 2000,
+    "enrolledAt": {
+      "$date": "2026-01-02T10:09:35.751000"
+    },
+    "experience_years": 12,
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "is_active": true,
+    "license_number": "MCILKDF2343EDF",
+    "qualifications": [
+      "MBS"
+    ],
+    "verified": true
+  },
+  {
+    "_id": {
+      "$oid": "6957a518f6c874e32783a359"
+    },
+    "name": "doctor2",
+    "specialization": "Dermatology",
+    "user_id": "6957a518f6c874e32783a358",
+    "createdAt": {
+      "$date": "2026-01-02T10:59:36.219000"
+    },
+    "available_days": [
+      "Tuesday",
+      "Saturday",
+      "Friday"
+    ],
+    "available_time_end": "20:30",
+    "available_time_start": "10:30",
+    "consultation_fee": 2000,
+    "enrolledAt": {
+      "$date": "2026-01-02T11:00:32.442000"
+    },
+    "experience_years": 20,
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "is_active": true,
+    "license_number": "MCIJHNGER2323WSDE",
+    "qualifications": [
+      "MBBS",
+      "MD"
+    ],
+    "verified": true
+  },
+  {
+    "_id": {
+      "$oid": "6957d0042708b228f1515222"
+    },
+    "name": "doctor3",
+    "specialization": "General Medicine",
+    "user_id": "6957d0042708b228f1515221",
+    "createdAt": {
+      "$date": "2026-01-02T14:02:44.080000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69608d521fd1720d6c7720e5"
+    },
+    "user_id": "69608d521fd1720d6c7720e4",
+    "name": "Dr. Rajesh Kumar",
+    "specialization": "General Medicine",
+    "qualifications": [
+      "MBBS",
+      "MD - General Medicine"
+    ],
+    "experience_years": 15,
+    "hospital_id": "694a4888f473e7f5db5a2422",
+    "department": "General Medicine",
+    "consultation_fee": 500,
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "available_time_start": "09:00",
+    "available_time_end": "17:00",
+    "isAvailable": true,
+    "rating": 4.5,
+    "totalReviews": 120,
+    "verified": true,
+    "is_active": true,
+    "createdAt": {
+      "$date": "2026-01-09T05:08:34.165000"
+    },
+    "updatedAt": {
+      "$date": "2026-01-09T05:08:34.165000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "696625215a1ca1375a7b519d"
+    },
+    "name": "rathinam",
+    "specialization": "Neurology",
+    "user_id": "696625215a1ca1375a7b519c",
+    "registration_number": "MCFRT343",
+    "license_number": "MCFRT343",
+    "createdAt": {
+      "$date": "2026-01-13T10:57:37.348000"
+    },
+    "available_days": [
+      "Tuesday",
+      "Thursday",
+      "Friday"
+    ],
+    "available_time_end": "21:44",
+    "available_time_start": "09:44",
+    "consultation_fee": 2500,
+    "enrolledAt": {
+      "$date": "2026-01-13T11:14:39.354000"
+    },
+    "experience_years": 12,
+    "hospital_id": "694a4888f473e7f5db5a2425",
+    "is_active": true,
+    "qualifications": [
+      "MBBS"
+    ],
+    "verified": true,
+    "rating": 4.0,
+    "review_count": 1
+  }
+]

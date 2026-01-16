@@ -1,0 +1,18 @@
+[
+  {
+    "_id": {
+      "$oid": "696627d05a1ca1375a7b51b0"
+    },
+    "appointment_id": "696626865a1ca1375a7b51a5",
+    "patient_id": "696625865a1ca1375a7b519f",
+    "patient_name": "Tamil",
+    "patient_mobile": "8998878776",
+    "doctor_id": "696625215a1ca1375a7b519c",
+    "doctor_name": "rathinam",
+    "rating": 4,
+    "feedback": "Good",
+    "created_at": {
+      "$date": "2026-01-13T11:09:04.334000"
+    }
+  }
+]

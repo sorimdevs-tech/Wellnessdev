@@ -1,0 +1,94 @@
+[
+  {
+    "_id": {
+      "$oid": "6957995fefd1d2adfbbdd1e8"
+    },
+    "entity_type": "doctor",
+    "entity_id": "69579917efd1d2adfbbdd1e4",
+    "status": "verified",
+    "documents_required": [
+      "Medical License",
+      "Qualification Certificates",
+      "ID Proof"
+    ],
+    "documents_submitted": [],
+    "notes": "Doctor enrollment at Fortis Malar Hospital",
+    "createdAt": {
+      "$date": "2026-01-02T10:09:35.757000"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T10:19:38.924000"
+    },
+    "verification_notes": "Approved by clinical admin",
+    "verified_by": "694a4888f473e7f5db5a2421"
+  },
+  {
+    "_id": {
+      "$oid": "6957a550f6c874e32783a35d"
+    },
+    "entity_type": "doctor",
+    "entity_id": "6957a518f6c874e32783a359",
+    "status": "verified",
+    "documents_required": [
+      "Medical License",
+      "Qualification Certificates",
+      "ID Proof"
+    ],
+    "documents_submitted": [],
+    "notes": "Doctor enrollment at Fortis Malar Hospital",
+    "createdAt": {
+      "$date": "2026-01-02T11:00:32.453000"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T11:02:19.893000"
+    },
+    "verification_notes": "Approved by clinical admin",
+    "verified_by": "694a4888f473e7f5db5a2421"
+  },
+  {
+    "_id": {
+      "$oid": "6966261d5a1ca1375a7b51a3"
+    },
+    "entity_type": "doctor",
+    "entity_id": "696625215a1ca1375a7b519d",
+    "status": "verified",
+    "documents_required": [
+      "Medical License",
+      "Qualification Certificates",
+      "ID Proof"
+    ],
+    "documents_submitted": [],
+    "notes": "Doctor enrollment at City Care Hospital",
+    "createdAt": {
+      "$date": "2026-01-13T11:01:49.504000"
+    },
+    "updatedAt": {
+      "$date": "2026-01-13T11:02:44.525000"
+    },
+    "verification_notes": "Approved by clinical admin",
+    "verified_by": "694a4888f473e7f5db5a2421"
+  },
+  {
+    "_id": {
+      "$oid": "6966291f5a1ca1375a7b51b7"
+    },
+    "entity_type": "doctor",
+    "entity_id": "696625215a1ca1375a7b519d",
+    "status": "verified",
+    "documents_required": [
+      "Medical License",
+      "Qualification Certificates",
+      "ID Proof"
+    ],
+    "documents_submitted": [],
+    "notes": "Doctor enrollment at SIMS Hospital",
+    "createdAt": {
+      "$date": "2026-01-13T11:14:39.416000"
+    },
+    "updatedAt": {
+      "$date": "2026-01-13T11:21:10.502000"
+    },
+    "verification_notes": "confirmed",
+    "verified_by": "694a4888f473e7f5db5a2421"
+  }
+]

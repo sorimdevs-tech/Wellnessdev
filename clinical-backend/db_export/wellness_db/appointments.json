@@ -1,0 +1,263 @@
+[
+  {
+    "_id": {
+      "$oid": "69579a43efd1d2adfbbdd1f1"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-02T17:43:00"
+    },
+    "status": "completed",
+    "notes": "gAAAAABpV5pD4mzYSdf6Pf_GQbaLRA9H_7BDOGvzDcZtnMQu630k3hH5gQ8CH---4Q_t-A2HW22tTaXrapKSUH8ZuknZkohZeg==",
+    "createdAt": {
+      "$date": "2026-01-02T10:13:23.970000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579ca7efd1d2adfbbdd1f6"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-02T18:53:00"
+    },
+    "status": "completed",
+    "notes": "gAAAAABpV5yn9BRspHc8xkaZaD2Q-GXZSDnlYD97Fb5yqKgJNc75dxZxYnJ9EeL2CVYtVNC5D9cMr8wgNl6ZAhnqBSpnu6U97w==",
+    "createdAt": {
+      "$date": "2026-01-02T10:23:35.914000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579e2befd1d2adfbbdd1fc"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-09T15:59:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpV54rK3x3rEsEFI6ws0_YK3nGlUygbcpHEqM8dxw4WU6XKP1DA9OPK0Wi_0q_YHLY5z8_LixXxNCZcQgjsJpBwXSDYw==",
+    "createdAt": {
+      "$date": "2026-01-02T10:30:03.497000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579e99efd1d2adfbbdd200"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-02T17:01:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpV56ZEiix349sTtRX6XUCvkxOOyHKOSoXWe-G8WWPBG59EAvccwOrD3U-ugf4WKzd1M1u1eVegpCig5WbtAITAt-1zQ==",
+    "createdAt": {
+      "$date": "2026-01-02T10:31:53.647000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579f0b74907416508bb33a"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-05T10:00:00"
+    },
+    "status": "approved",
+    "notes": "Test appointment",
+    "createdAt": {
+      "$date": "2026-01-02T10:33:47.769000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579f2defd1d2adfbbdd204"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-02T21:04:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpV58tUEfY66BtllxxIhPjAcBYsxLHepmsQ2rjQtwCNimQLd5pfGLXZHaHSGPgBpdixtgmBH2pTmUSq3zRgLIhAsDyIQ==",
+    "createdAt": {
+      "$date": "2026-01-02T10:34:21.250000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a455f6c874e32783a34e"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-02T17:26:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpV6RVGPMhNDpDOTD6AwNC8BFkRGM4sxhEpFESQLHvYlLWkY4UdKJVSD-1njboVcvYn2Tamk_aF8yiPxzICeNbfczAMg==",
+    "createdAt": {
+      "$date": "2026-01-02T10:56:21.048000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a5d2f6c874e32783a362"
+    },
+    "patient_id": "6957a518f6c874e32783a358",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-02T17:32:00"
+    },
+    "status": "completed",
+    "notes": "gAAAAABpV6XSwb6JsVnNNFPT8MoVOQF7SV5bZJnykDCQ1U3yO0HC4B0e9kUoUmZsKFMHQbK90qRHf9cRL46PkiKGOXqFnr_ADg==",
+    "createdAt": {
+      "$date": "2026-01-02T11:02:42.819000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a7772708b228f1515201"
+    },
+    "patient_id": "6957a518f6c874e32783a358",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-02T17:39:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpV6d3ccDpkmiSocacFaJ1VtlF4zz6S4LqvQaY-VTpAvQuIz8N_eV2ChpK4n8Xzt-zfQr6EO1qfwXZz0kQta63YFQW_Q==",
+    "createdAt": {
+      "$date": "2026-01-02T11:09:43.029000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957b2ff2708b228f1515209"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "6957a518f6c874e32783a358",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-03T09:28:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpV7L_UHkAMTV0xRV7tus_LNLl0S7zcvY4v_Wi7NmMgP4VaGTx8utaXoxWhv3-koe3006V1NWd-SwqOzIomOaC8QRRyQ==",
+    "createdAt": {
+      "$date": "2026-01-02T11:58:55.681000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957b7a02708b228f1515212"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-02T18:48:00"
+    },
+    "status": "pending",
+    "notes": "gAAAAABpV7eg7y61bWTpIpsTYAwzyxjdmAAg012db7ksbo_Sm_vF6U7gqi49fmiT1wT3lEnSoYM1XbyFYmTJsU_LDgpzSuNh9g==",
+    "createdAt": {
+      "$date": "2026-01-02T12:18:40.100000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6958c6a39c5eb492028b41c5"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "doctor_id": "6957a518f6c874e32783a358",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "appointment_date": {
+      "$date": "2026-01-03T13:17:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpWMajnFAXPD5nbcmYj-MT-EjHMZDRcxihL4_xn9GBkF8Jf8Qn1Ro1RCm3Rr2n9fxDwYjJ-0LFQrksD2KcdEl16e1SJw==",
+    "createdAt": {
+      "$date": "2026-01-03T07:34:59.531000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "696626865a1ca1375a7b51a5"
+    },
+    "patient_id": "696625865a1ca1375a7b519f",
+    "doctor_id": "696625215a1ca1375a7b519c",
+    "hospital_id": "694a4888f473e7f5db5a2422",
+    "appointment_date": {
+      "$date": "2026-01-13T17:33:00"
+    },
+    "status": "completed",
+    "notes": "gAAAAABpZiaGbdjpi_UGRYDoizERR4DAv6lY82Hf_JjVHtfQKCpkzDewgcQgCVuAzx7gyTKsYqsum53VWy3XUOVYe-OwGXD-6Q==",
+    "createdAt": {
+      "$date": "2026-01-13T11:03:34.441000"
+    },
+    "feedback_rating": 4,
+    "has_feedback": true
+  },
+  {
+    "_id": {
+      "$oid": "69662ad95a1ca1375a7b51ba"
+    },
+    "patient_id": "696625215a1ca1375a7b519c",
+    "doctor_id": "69608d521fd1720d6c7720e4",
+    "hospital_id": "694a4888f473e7f5db5a2422",
+    "appointment_date": {
+      "$date": "2026-01-13T17:51:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpZirZtN-xtPngsOEGIvEvke_N-dsl0Z4xnpGoM70BpWg-C-88yAQrTn9KK5VVQCLpyoyG0tdma1TjvBN4niGwRIRbEQ==",
+    "createdAt": {
+      "$date": "2026-01-13T11:22:01.789000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69662b6b5a1ca1375a7b51c1"
+    },
+    "patient_id": "696625215a1ca1375a7b519c",
+    "doctor_id": "69608d521fd1720d6c7720e4",
+    "hospital_id": "694a4888f473e7f5db5a2422",
+    "appointment_date": {
+      "$date": "2026-01-13T16:59:00"
+    },
+    "status": "approved",
+    "notes": "gAAAAABpZitr97nsTL-hY4oePxVujd-ewE_Q2lfJIWnTjce7GXAybnmv9LWwE83lMBCCOK95mTdN9eBiEL-v8nD7kVMttuSkCw==",
+    "createdAt": {
+      "$date": "2026-01-13T11:24:27.192000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69662bd75a1ca1375a7b51c8"
+    },
+    "patient_id": "696625215a1ca1375a7b519c",
+    "doctor_id": "69608d521fd1720d6c7720e4",
+    "hospital_id": "694a4888f473e7f5db5a2422",
+    "appointment_date": {
+      "$date": "2026-01-13T17:03:00"
+    },
+    "status": "rejected",
+    "notes": "gAAAAABpZivXSc2SUgY0XdQydChIx4Aa5oVVt3rei4pZ6yP3YnT4zUZLaiiTARSReFnYMl2vNDPz09_56nIYDaJHkHCwRAN9hQ==",
+    "createdAt": {
+      "$date": "2026-01-13T11:26:15.602000"
+    },
+    "cancelled_by": "doctor",
+    "is_last_minute": true,
+    "rejection_reason": "I'm out of clininc"
+  }
+]

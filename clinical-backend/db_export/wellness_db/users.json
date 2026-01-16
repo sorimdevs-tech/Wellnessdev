@@ -1,0 +1,178 @@
+[
+  {
+    "_id": {
+      "$oid": "694a4888f473e7f5db5a2421"
+    },
+    "name": "Clinical Admin",
+    "email": "pulimuruganthangaraman@gmail.com",
+    "mobile": "9876543212",
+    "userType": "clinical_admin",
+    "currentRole": "clinical_admin",
+    "password": "demo-password",
+    "createdAt": {
+      "$date": "2025-12-23T07:45:12.970000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957983eefd1d2adfbbdd1de"
+    },
+    "name": "pulimurugan user",
+    "email": "pulimurugan@gmail.com",
+    "mobile": "8778877678",
+    "userType": "user",
+    "currentRole": "user",
+    "password": "sha256:f49d6e4117fde6c7b3c0cdebad06a45c:26b373f7a81bfa1f7aa0a173334696cbc044e47550d6cf0d8983f61e527c333c",
+    "createdAt": {
+      "$date": "2026-01-02T10:04:46.404000"
+    },
+    "email_verified": true,
+    "date_of_birth": "2005-08-23",
+    "gender": "male"
+  },
+  {
+    "_id": {
+      "$oid": "69579917efd1d2adfbbdd1e3"
+    },
+    "name": "doctorcity",
+    "email": "doctorcity@gmail.com",
+    "mobile": "8778877678",
+    "userType": "doctor",
+    "currentRole": "doctor",
+    "password": "sha256:06abdd8e02f3bbdfe2d54a7341e3860e:aa560870eda936e4431d5275426a1af503a5b6a26ad2e7c1d373b59725bc3476",
+    "createdAt": {
+      "$date": "2026-01-02T10:08:23.101000"
+    },
+    "email_verified": true,
+    "date_of_birth": "2005-08-23",
+    "gender": "female",
+    "doctorVerified": false,
+    "doctor_verified": true,
+    "verified": true
+  },
+  {
+    "_id": {
+      "$oid": "6957a518f6c874e32783a358"
+    },
+    "name": "doctor2",
+    "email": "doctor2@gmail.com",
+    "mobile": "9898989887",
+    "userType": "doctor",
+    "currentRole": "doctor",
+    "password": "sha256:eea0e0754725b46035a7365ae46deaa3:cc2c5a5bc2d0b170bf5aa0d25d1dbfb46922607b203b8b467e418672300bc0d1",
+    "createdAt": {
+      "$date": "2026-01-02T10:59:36.217000"
+    },
+    "email_verified": true,
+    "date_of_birth": "1999-12-12",
+    "gender": "female",
+    "doctorVerified": false,
+    "doctor_verified": true,
+    "verified": true
+  },
+  {
+    "_id": {
+      "$oid": "6957d0042708b228f1515221"
+    },
+    "name": "doctor3",
+    "email": "doctor@gmail.com",
+    "mobile": "8767567689",
+    "userType": "doctor",
+    "currentRole": "doctor",
+    "password": "sha256:df1e4e8ecb66f38a4420d54dfcd88b60:f118d8ba8e42b97df44d6c3e6f8b48348de7510905e13e7ac2b26593a30b02ea",
+    "createdAt": {
+      "$date": "2026-01-02T14:02:44.072000"
+    },
+    "email_verified": true,
+    "date_of_birth": "1998-02-12",
+    "gender": "female"
+  },
+  {
+    "_id": {
+      "$oid": "6958b70d9c5eb492028b41c2"
+    },
+    "name": "Pulimurugan",
+    "email": "example@gmail.com",
+    "mobile": "9887676554",
+    "userType": "user",
+    "currentRole": "user",
+    "password": "sha256:5efbb1c8cb4b806a7dfd6172146f9399:cab45dd62529dfb61ce4dc319a2048eeb147a7b35daed86b85caaa765903b810",
+    "createdAt": {
+      "$date": "2026-01-03T06:28:29.344000"
+    },
+    "email_verified": true,
+    "date_of_birth": "1997-08-26",
+    "gender": "male",
+    "registration_number": null
+  },
+  {
+    "_id": {
+      "$oid": "69608d521fd1720d6c7720e4"
+    },
+    "name": "Dr. Rajesh Kumar",
+    "email": "rajesh@example.com",
+    "password": "sha256:9ceba8e71a0c46f666f90f8a6e30b4ca:0e0a66880fdc482c5d575d8848ea0d6cb0ee23e4f81d3c68df0e30b8416af94b",
+    "userType": "doctor",
+    "currentRole": "doctor",
+    "createdAt": {
+      "$date": "2026-01-09T05:08:34.158000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6960900d631f8849a66e5ce4"
+    },
+    "name": "Sanju",
+    "email": "pulimuruganit@gmail.com",
+    "mobile": "0936019096",
+    "userType": "user",
+    "currentRole": "user",
+    "password": "sha256:92d991877ec6ef6e7ac0ab2d262ea0b4:426d92c18154901998dc82b7e654877ff9b758d2a8aadd234ecd6844050404c9",
+    "createdAt": {
+      "$date": "2026-01-09T05:20:13.696000"
+    },
+    "email_verified": true,
+    "date_of_birth": "1999-08-26",
+    "gender": "male",
+    "registration_number": null
+  },
+  {
+    "_id": {
+      "$oid": "696625215a1ca1375a7b519c"
+    },
+    "name": "rathinam",
+    "email": "gnanarathinam6@gmail.com",
+    "mobile": "1223434576",
+    "userType": "doctor",
+    "currentRole": "doctor",
+    "password": "sha256:e6bfa07515f396e6e138e1fd39cfaf84:61d3a0807d8fcf88ab1888ec47738446ced3a5091df96dff3bfd1aa226282538",
+    "createdAt": {
+      "$date": "2026-01-13T10:57:37.340000"
+    },
+    "email_verified": true,
+    "date_of_birth": "2000-12-12",
+    "gender": "male",
+    "registration_number": "MCFRT343",
+    "doctorVerified": false,
+    "doctor_verified": true,
+    "verified": true
+  },
+  {
+    "_id": {
+      "$oid": "696625865a1ca1375a7b519f"
+    },
+    "name": "Tamil",
+    "email": "tamilselvansevugan27@gmail.com",
+    "mobile": "8998878776",
+    "userType": "user",
+    "currentRole": "user",
+    "password": "sha256:b39e8423037974b212a1fc6e001aa952:85c3ad5fb84cbb0d56bc125608a7dc1c3917c298fbd512a9676482f50091fe47",
+    "createdAt": {
+      "$date": "2026-01-13T10:59:18.597000"
+    },
+    "email_verified": true,
+    "date_of_birth": "2000-10-23",
+    "gender": "male",
+    "registration_number": null
+  }
+]

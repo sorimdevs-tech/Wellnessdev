@@ -1,0 +1,690 @@
+[
+  {
+    "_id": {
+      "$oid": "69579a43efd1d2adfbbdd1f4"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "69579a43efd1d2adfbbdd1f1",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 02, 2026 at 05:43 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:13:23.979242",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69579ca7efd1d2adfbbdd1f9"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "69579ca7efd1d2adfbbdd1f6",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 02, 2026 at 06:53 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:23:35.920868",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69579e2befd1d2adfbbdd1ff"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "69579e2befd1d2adfbbdd1fc",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 09, 2026 at 03:59 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:30:03.501347",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69579e99efd1d2adfbbdd203"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "69579e99efd1d2adfbbdd200",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 02, 2026 at 05:01 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:31:53.653896",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69579f2defd1d2adfbbdd207"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "69579f2defd1d2adfbbdd204",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 02, 2026 at 09:04 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:34:21.255231",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a394f6c874e32783a34a"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "6957983eefd1d2adfbbdd1de",
+    "sender_role": "user",
+    "message": "HI",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:53:08.269651",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a3a0f6c874e32783a34b"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "69579917efd1d2adfbbdd1e3",
+    "sender_role": "doctor",
+    "message": "HI",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "69579917efd1d2adfbbdd1e3",
+      "6957983eefd1d2adfbbdd1de"
+    ],
+    "timestamp": "2026-01-02T10:53:20.420669",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a455f6c874e32783a351"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "6957a455f6c874e32783a34e",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 02, 2026 at 05:26 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:56:21.058102",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a4a3f6c874e32783a354"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "6957a455f6c874e32783a34e",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 02, 2026 at 05:26 PM has been approved by Dr. doctorcity. You can now chat!",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:57:39.990812",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a4bef6c874e32783a356"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "69579ca7efd1d2adfbbdd1f6",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "🎉 Appointment for January 02, 2026 at 06:53 PM has been completed. Thank you for choosing Dr. doctorcity!",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T10:58:06.419516",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a5d2f6c874e32783a365"
+    },
+    "conversation_id": "69579917efd1d2adfbbdd1e3_6957a518f6c874e32783a358",
+    "appointment_id": "6957a5d2f6c874e32783a362",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 02, 2026 at 05:32 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957a518f6c874e32783a358",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T11:02:42.825684",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a5e2f6c874e32783a367"
+    },
+    "conversation_id": "69579917efd1d2adfbbdd1e3_6957a518f6c874e32783a358",
+    "appointment_id": "6957a5d2f6c874e32783a362",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 02, 2026 at 05:32 PM has been approved by Dr. doctorcity. You can now chat!",
+    "message_type": "system",
+    "read_by": [
+      "6957a518f6c874e32783a358",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T11:02:58.397734",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a75a2708b228f1515200"
+    },
+    "conversation_id": "69579917efd1d2adfbbdd1e3_6957a518f6c874e32783a358",
+    "appointment_id": "6957a5d2f6c874e32783a362",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "🎉 Appointment for January 02, 2026 at 05:32 PM has been completed. Thank you for choosing Dr. doctorcity!",
+    "message_type": "system",
+    "read_by": [
+      "6957a518f6c874e32783a358",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T11:09:14.199119",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a7772708b228f1515204"
+    },
+    "conversation_id": "69579917efd1d2adfbbdd1e3_6957a518f6c874e32783a358",
+    "appointment_id": "6957a7772708b228f1515201",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 02, 2026 at 05:39 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957a518f6c874e32783a358",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T11:09:43.039879",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957a77d2708b228f1515206"
+    },
+    "conversation_id": "69579917efd1d2adfbbdd1e3_6957a518f6c874e32783a358",
+    "appointment_id": "6957a7772708b228f1515201",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 02, 2026 at 05:39 PM has been approved by Dr. doctorcity. You can now chat!",
+    "message_type": "system",
+    "read_by": [
+      "6957a518f6c874e32783a358",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T11:09:49.107977",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957b2ff2708b228f151520c"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_6957a518f6c874e32783a358",
+    "appointment_id": "6957b2ff2708b228f1515209",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 03, 2026 at 09:28 AM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de"
+    ],
+    "timestamp": "2026-01-02T11:58:55.692629",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957b7a02708b228f1515215"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": "6957b7a02708b228f1515212",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 02, 2026 at 06:48 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T12:18:40.103523",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957ba042708b228f1515217"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "6957983eefd1d2adfbbdd1de",
+    "sender_role": "user",
+    "message": "hii",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T12:28:52.243720",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957ba292708b228f1515219"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "69579917efd1d2adfbbdd1e3",
+    "sender_role": "doctor",
+    "message": "Hii",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "69579917efd1d2adfbbdd1e3",
+      "6957983eefd1d2adfbbdd1de"
+    ],
+    "timestamp": "2026-01-02T12:29:29.330524",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957ba452708b228f151521a"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "6957983eefd1d2adfbbdd1de",
+    "sender_role": "user",
+    "message": "can you please bring your all documents and all",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T12:29:57.140972",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957ba4e2708b228f151521b"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "69579917efd1d2adfbbdd1e3",
+    "sender_role": "doctor",
+    "message": "ya sure",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "69579917efd1d2adfbbdd1e3",
+      "6957983eefd1d2adfbbdd1de"
+    ],
+    "timestamp": "2026-01-02T12:30:06.290577",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957ba5b2708b228f151521c"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "69579917efd1d2adfbbdd1e3",
+    "sender_role": "doctor",
+    "message": "but i don't have a all documents and all",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "69579917efd1d2adfbbdd1e3",
+      "6957983eefd1d2adfbbdd1de"
+    ],
+    "timestamp": "2026-01-02T12:30:19.775359",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957ba6c2708b228f151521d"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "69579917efd1d2adfbbdd1e3",
+    "sender_role": "doctor",
+    "message": "can you please tell me what type of documents are needed",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "69579917efd1d2adfbbdd1e3",
+      "6957983eefd1d2adfbbdd1de"
+    ],
+    "timestamp": "2026-01-02T12:30:36.030632",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957ba732708b228f151521e"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "6957983eefd1d2adfbbdd1de",
+    "sender_role": "user",
+    "message": "ya sure",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "6957983eefd1d2adfbbdd1de",
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T12:30:43.505311",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6957bf622708b228f151521f"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "69579917efd1d2adfbbdd1e3",
+    "sender_role": "doctor",
+    "message": "Hii",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-02T12:51:46.108031",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6958c6a39c5eb492028b41c8"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_6957a518f6c874e32783a358",
+    "appointment_id": "6958c6a39c5eb492028b41c5",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 03, 2026 at 01:17 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [],
+    "timestamp": "2026-01-03T07:34:59.543946",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6958c7239c5eb492028b41cc"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_6957a518f6c874e32783a358",
+    "appointment_id": "6958c6a39c5eb492028b41c5",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 03, 2026 at 01:17 PM has been approved by Dr. doctor2. You can now chat!",
+    "message_type": "system",
+    "read_by": [],
+    "timestamp": "2026-01-03T07:37:07.699412",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6958c7279c5eb492028b41ce"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_6957a518f6c874e32783a358",
+    "appointment_id": "6957b2ff2708b228f1515209",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 03, 2026 at 09:28 AM has been approved by Dr. doctor2. You can now chat!",
+    "message_type": "system",
+    "read_by": [],
+    "timestamp": "2026-01-03T07:37:11.752816",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69609160631f8849a66e5ce7"
+    },
+    "conversation_id": "6957983eefd1d2adfbbdd1de_69579917efd1d2adfbbdd1e3",
+    "appointment_id": null,
+    "sender_id": "69579917efd1d2adfbbdd1e3",
+    "sender_role": "doctor",
+    "message": "HI",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "69579917efd1d2adfbbdd1e3"
+    ],
+    "timestamp": "2026-01-09T05:25:52.172684",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "696626865a1ca1375a7b51a8"
+    },
+    "conversation_id": "696625215a1ca1375a7b519c_696625865a1ca1375a7b519f",
+    "appointment_id": "696626865a1ca1375a7b51a5",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 13, 2026 at 05:33 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c",
+      "696625865a1ca1375a7b519f"
+    ],
+    "timestamp": "2026-01-13T11:03:34.460933",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "696626d95a1ca1375a7b51ab"
+    },
+    "conversation_id": "696625215a1ca1375a7b519c_696625865a1ca1375a7b519f",
+    "appointment_id": "696626865a1ca1375a7b51a5",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 13, 2026 at 05:33 PM has been approved by Dr. rathinam. You can now chat!",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c",
+      "696625865a1ca1375a7b519f"
+    ],
+    "timestamp": "2026-01-13T11:04:57.746856",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6966274e5a1ca1375a7b51ac"
+    },
+    "conversation_id": "696625215a1ca1375a7b519c_696625865a1ca1375a7b519f",
+    "appointment_id": null,
+    "sender_id": "696625215a1ca1375a7b519c",
+    "sender_role": "doctor",
+    "message": "Hi Tamil can you plz bring your all records",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "696625215a1ca1375a7b519c",
+      "696625865a1ca1375a7b519f"
+    ],
+    "timestamp": "2026-01-13T11:06:54.667787",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "6966276d5a1ca1375a7b51ad"
+    },
+    "conversation_id": "696625215a1ca1375a7b519c_696625865a1ca1375a7b519f",
+    "appointment_id": null,
+    "sender_id": "696625865a1ca1375a7b519f",
+    "sender_role": "user",
+    "message": "OK doc",
+    "message_type": "text",
+    "file_url": null,
+    "read_by": [
+      "696625865a1ca1375a7b519f",
+      "696625215a1ca1375a7b519c"
+    ],
+    "timestamp": "2026-01-13T11:07:25.006872",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "696627aa5a1ca1375a7b51af"
+    },
+    "conversation_id": "696625215a1ca1375a7b519c_696625865a1ca1375a7b519f",
+    "appointment_id": "696626865a1ca1375a7b51a5",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "🎉 Appointment for January 13, 2026 at 05:33 PM has been completed. Thank you for choosing Dr. rathinam!",
+    "message_type": "system",
+    "read_by": [],
+    "timestamp": "2026-01-13T11:08:26.647449",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69662ad95a1ca1375a7b51bd"
+    },
+    "conversation_id": "69608d521fd1720d6c7720e4_696625215a1ca1375a7b519c",
+    "appointment_id": "69662ad95a1ca1375a7b51ba",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 13, 2026 at 05:51 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c"
+    ],
+    "timestamp": "2026-01-13T11:22:01.799692",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69662b2a5a1ca1375a7b51c0"
+    },
+    "conversation_id": "69608d521fd1720d6c7720e4_696625215a1ca1375a7b519c",
+    "appointment_id": "69662ad95a1ca1375a7b51ba",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 13, 2026 at 05:51 PM has been approved by Dr. Dr. Rajesh Kumar. You can now chat!",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c"
+    ],
+    "timestamp": "2026-01-13T11:23:22.473783",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69662b6b5a1ca1375a7b51c4"
+    },
+    "conversation_id": "69608d521fd1720d6c7720e4_696625215a1ca1375a7b519c",
+    "appointment_id": "69662b6b5a1ca1375a7b51c1",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 13, 2026 at 04:59 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c"
+    ],
+    "timestamp": "2026-01-13T11:24:27.201632",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69662b7b5a1ca1375a7b51c7"
+    },
+    "conversation_id": "69608d521fd1720d6c7720e4_696625215a1ca1375a7b519c",
+    "appointment_id": "69662b6b5a1ca1375a7b51c1",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 13, 2026 at 04:59 PM has been approved by Dr. Dr. Rajesh Kumar. You can now chat!",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c"
+    ],
+    "timestamp": "2026-01-13T11:24:43.230906",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69662bd75a1ca1375a7b51cb"
+    },
+    "conversation_id": "69608d521fd1720d6c7720e4_696625215a1ca1375a7b519c",
+    "appointment_id": "69662bd75a1ca1375a7b51c8",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "📅 New appointment booked for January 13, 2026 at 05:03 PM. Awaiting doctor approval.",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c"
+    ],
+    "timestamp": "2026-01-13T11:26:15.608085",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69662bea5a1ca1375a7b51cd"
+    },
+    "conversation_id": "69608d521fd1720d6c7720e4_696625215a1ca1375a7b519c",
+    "appointment_id": "69662bd75a1ca1375a7b51c8",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "✅ Appointment for January 13, 2026 at 05:03 PM has been approved by Dr. Dr. Rajesh Kumar. You can now chat!",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c"
+    ],
+    "timestamp": "2026-01-13T11:26:34.138853",
+    "deleted": false
+  },
+  {
+    "_id": {
+      "$oid": "69662c7e5a1ca1375a7b51cf"
+    },
+    "conversation_id": "69608d521fd1720d6c7720e4_696625215a1ca1375a7b519c",
+    "appointment_id": "69662bd75a1ca1375a7b51c8",
+    "sender_id": "system",
+    "sender_role": "system",
+    "message": "❌ Appointment for January 13, 2026 at 05:03 PM has been rejected by Dr. Dr. Rajesh Kumar. Reason: I'm out of clininc",
+    "message_type": "system",
+    "read_by": [
+      "696625215a1ca1375a7b519c"
+    ],
+    "timestamp": "2026-01-13T11:29:02.948146",
+    "deleted": false
+  }
+]

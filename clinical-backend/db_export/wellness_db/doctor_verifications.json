@@ -1,0 +1,62 @@
+[
+  {
+    "_id": {
+      "$oid": "6957995fefd1d2adfbbdd1e7"
+    },
+    "doctor_id": "69579917efd1d2adfbbdd1e4",
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "status": "pending",
+    "submitted_at": {
+      "$date": "2026-01-02T10:09:35.757000"
+    },
+    "doctor_name": "doctorcity",
+    "specialization": "Cardiology",
+    "license_number": "MCILKDF2343EDF"
+  },
+  {
+    "_id": {
+      "$oid": "6957a550f6c874e32783a35c"
+    },
+    "doctor_id": "6957a518f6c874e32783a359",
+    "user_id": "6957a518f6c874e32783a358",
+    "hospital_id": "694a4888f473e7f5db5a2424",
+    "status": "pending",
+    "submitted_at": {
+      "$date": "2026-01-02T11:00:32.451000"
+    },
+    "doctor_name": "doctor2",
+    "specialization": "Dermatology",
+    "license_number": "MCIJHNGER2323WSDE"
+  },
+  {
+    "_id": {
+      "$oid": "6966261d5a1ca1375a7b51a2"
+    },
+    "doctor_id": "696625215a1ca1375a7b519d",
+    "user_id": "696625215a1ca1375a7b519c",
+    "hospital_id": "694a4888f473e7f5db5a2422",
+    "status": "pending",
+    "submitted_at": {
+      "$date": "2026-01-13T11:01:49.501000"
+    },
+    "doctor_name": "rathinam",
+    "specialization": "Neurology",
+    "license_number": "MCFRT343"
+  },
+  {
+    "_id": {
+      "$oid": "6966291f5a1ca1375a7b51b6"
+    },
+    "doctor_id": "696625215a1ca1375a7b519d",
+    "user_id": "696625215a1ca1375a7b519c",
+    "hospital_id": "694a4888f473e7f5db5a2425",
+    "status": "pending",
+    "submitted_at": {
+      "$date": "2026-01-13T11:14:39.414000"
+    },
+    "doctor_name": "rathinam",
+    "specialization": "Neurology",
+    "license_number": "MCFRT343"
+  }
+]

@@ -1,0 +1,275 @@
+[
+  {
+    "_id": {
+      "$oid": "695796141880ace126e5436b"
+    },
+    "user_id": "695791ae1880ace126e54366",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "language": "English",
+      "theme": "light",
+      "dateFormat": "DD/MM/YYYY",
+      "distanceUnit": "km"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T09:55:32.267000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957973a9aed27097a810206"
+    },
+    "user_id": "694a753a28d2d214dd5e2a36",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "language": "English",
+      "theme": "light",
+      "dateFormat": "DD/MM/YYYY",
+      "distanceUnit": "km"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T10:00:26.190000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957973a9aed27097a810207"
+    },
+    "user_id": "695793411880ace126e54369",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "language": "English",
+      "theme": "light",
+      "dateFormat": "DD/MM/YYYY",
+      "distanceUnit": "km"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T10:00:26.277000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579894efd1d2adfbbdd1e1"
+    },
+    "user_id": "6957983eefd1d2adfbbdd1de",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "theme": "light"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T12:18:09.453000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695799e8efd1d2adfbbdd1ec"
+    },
+    "user_id": "694a4888f473e7f5db5a2421",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "theme": "light"
+    },
+    "updatedAt": {
+      "$date": "2026-01-13T11:19:36.059000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69579a03efd1d2adfbbdd1ee"
+    },
+    "user_id": "69579917efd1d2adfbbdd1e3",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "language": "English",
+      "theme": "light",
+      "dateFormat": "DD/MM/YYYY",
+      "distanceUnit": "km"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T10:12:19.570000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957a5c4f6c874e32783a361"
+    },
+    "user_id": "6957a518f6c874e32783a358",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "language": "English",
+      "theme": "light",
+      "dateFormat": "DD/MM/YYYY",
+      "distanceUnit": "km"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T11:02:28.327000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957d1f32708b228f1515223"
+    },
+    "user_id": "6957d0042708b228f1515221",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "language": "English",
+      "theme": "light",
+      "dateFormat": "DD/MM/YYYY",
+      "distanceUnit": "km"
+    },
+    "updatedAt": {
+      "$date": "2026-01-02T14:10:59.428000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6960901751e6f84d91b7ad85"
+    },
+    "user_id": "6960900d631f8849a66e5ce4",
+    "preferences": {
+      "theme": "light"
+    },
+    "updatedAt": {
+      "$date": "2026-01-09T05:20:23.228000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6966252651e6f84d91b7ad86"
+    },
+    "user_id": "696625215a1ca1375a7b519c",
+    "preferences": {
+      "theme": "light"
+    },
+    "updatedAt": {
+      "$date": "2026-01-13T10:57:42.096000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6966258951e6f84d91b7ad87"
+    },
+    "user_id": "696625865a1ca1375a7b519f",
+    "preferences": {
+      "theme": "light"
+    },
+    "updatedAt": {
+      "$date": "2026-01-13T11:08:37.050000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69662b775a1ca1375a7b51c5"
+    },
+    "user_id": "69608d521fd1720d6c7720e4",
+    "notifications": {
+      "emailNotifications": true,
+      "pushNotifications": true,
+      "appointmentReminders": true,
+      "healthTips": false,
+      "promosAndOffers": false
+    },
+    "privacy": {
+      "profileVisibility": "private",
+      "shareHealthData": false,
+      "allowResearch": false
+    },
+    "preferences": {
+      "language": "English",
+      "theme": "light",
+      "dateFormat": "DD/MM/YYYY",
+      "distanceUnit": "km"
+    },
+    "updatedAt": {
+      "$date": "2026-01-13T11:24:39.476000"
+    }
+  }
+]

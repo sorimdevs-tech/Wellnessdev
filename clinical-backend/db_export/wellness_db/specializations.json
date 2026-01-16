@@ -1,0 +1,322 @@
+[
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a20a"
+    },
+    "name": "General Medicine",
+    "description": "Primary healthcare and general medical conditions",
+    "icon": "🩺",
+    "category": "Primary Care",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a20b"
+    },
+    "name": "Cardiology",
+    "description": "Heart and cardiovascular system",
+    "icon": "❤️",
+    "category": "Internal Medicine",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a20c"
+    },
+    "name": "Dermatology",
+    "description": "Skin, hair, and nail conditions",
+    "icon": "🧴",
+    "category": "Specialty",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a20d"
+    },
+    "name": "Orthopedics",
+    "description": "Bones, joints, and musculoskeletal system",
+    "icon": "🦴",
+    "category": "Surgery",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a20e"
+    },
+    "name": "Pediatrics",
+    "description": "Medical care for infants, children, and adolescents",
+    "icon": "👶",
+    "category": "Primary Care",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a20f"
+    },
+    "name": "Gynecology",
+    "description": "Female reproductive system health",
+    "icon": "🌸",
+    "category": "Women's Health",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a210"
+    },
+    "name": "Neurology",
+    "description": "Brain, spinal cord, and nervous system",
+    "icon": "🧠",
+    "category": "Internal Medicine",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a211"
+    },
+    "name": "Psychiatry",
+    "description": "Mental health and behavioral disorders",
+    "icon": "🧘",
+    "category": "Mental Health",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a212"
+    },
+    "name": "Ophthalmology",
+    "description": "Eye and vision care",
+    "icon": "👁️",
+    "category": "Specialty",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a213"
+    },
+    "name": "ENT",
+    "description": "Ear, nose, and throat conditions",
+    "icon": "👂",
+    "category": "Specialty",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a214"
+    },
+    "name": "Gastroenterology",
+    "description": "Digestive system and gastrointestinal tract",
+    "icon": "🫃",
+    "category": "Internal Medicine",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a215"
+    },
+    "name": "Pulmonology",
+    "description": "Lungs and respiratory system",
+    "icon": "🫁",
+    "category": "Internal Medicine",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a216"
+    },
+    "name": "Oncology",
+    "description": "Cancer diagnosis and treatment",
+    "icon": "🎗️",
+    "category": "Specialty",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a217"
+    },
+    "name": "Nephrology",
+    "description": "Kidney diseases and disorders",
+    "icon": "🫘",
+    "category": "Internal Medicine",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a218"
+    },
+    "name": "Urology",
+    "description": "Urinary tract and male reproductive system",
+    "icon": "💧",
+    "category": "Surgery",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a219"
+    },
+    "name": "Endocrinology",
+    "description": "Hormones and metabolic disorders",
+    "icon": "⚗️",
+    "category": "Internal Medicine",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a21a"
+    },
+    "name": "Rheumatology",
+    "description": "Arthritis and autoimmune diseases",
+    "icon": "🦵",
+    "category": "Internal Medicine",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a21b"
+    },
+    "name": "Emergency Medicine",
+    "description": "Emergency and critical care",
+    "icon": "🚨",
+    "category": "Emergency",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a21c"
+    },
+    "name": "General Surgery",
+    "description": "Surgical procedures and operations",
+    "icon": "🔪",
+    "category": "Surgery",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a21d"
+    },
+    "name": "Dental",
+    "description": "Oral health and dental care",
+    "icon": "🦷",
+    "category": "Dental",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.943000"
+    }
+  }
+]

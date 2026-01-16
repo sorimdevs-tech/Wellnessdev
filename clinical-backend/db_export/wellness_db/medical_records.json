@@ -1,0 +1,70 @@
+[
+  {
+    "_id": {
+      "$oid": "6957b5ce2708b228f151520f"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "record_type": "lab_report",
+    "title": "blood report",
+    "description": "gAAAAABpV7XOOhbgoQMvZAwqRMinlRHjLeS_80NyaO0k9dN44FLoL-igCn6OZVfvz6h23m2cxEMIv6-zbeb7IHDVTYoptUcp4g==",
+    "file_path": "/medical-records/download/6957983eefd1d2adfbbdd1de/97407889-cd52-4fef-83fc-f6cec09260e5.pdf",
+    "original_filename": "file_JPEG-to-PDF.pdf",
+    "file_size": 7998,
+    "appointment_id": null,
+    "uploaded_by": "6957983eefd1d2adfbbdd1de",
+    "createdAt": {
+      "$date": "2026-01-02T12:10:54.040000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6957b7a02708b228f1515216"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "record_type": "pre_appointment",
+    "title": "Pre-appointment: file_JPEG-to-PDF.pdf",
+    "description": "gAAAAABpV7egMGkOY9W4YlbffdM43ccRMpm23Jw2Z_XhZFWYlVLphxshaqdW-Dmhi-aZv6DW8gC2pSBdWJh91S6byHn0Dn4P8ofkqPDPskcw6GoXcokCRV9LCDo4h2PJCUVwP1uPEdPqf9fTjQTgMK12rOHNoIqxIA==",
+    "file_path": "/medical-records/download/6957983eefd1d2adfbbdd1de/7ceb7fdf-6ebb-436d-9ce8-f0cf83004b1f.pdf",
+    "original_filename": "file_JPEG-to-PDF.pdf",
+    "file_size": 7998,
+    "appointment_id": "6957b7a02708b228f1515212",
+    "uploaded_by": "6957983eefd1d2adfbbdd1de",
+    "createdAt": {
+      "$date": "2026-01-02T12:18:40.116000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6958c6a39c5eb492028b41c9"
+    },
+    "patient_id": "6957983eefd1d2adfbbdd1de",
+    "record_type": "pre_appointment",
+    "title": "Pre-appointment: Java_Migration_Executive_Summary_and_Report.docx",
+    "description": "gAAAAABpWMajq91mUX3eWb4kpU4Pt7bZffRZbL0ooHplZN1a3NG6EYOywYxraKIkiZOJr0F1_idBRxYqL9vc6RniNbODmXtrykWlwEOJWBBcsuQ4g7kf6Z5OL4Dz4_fbbIbjxejiIYMhpMT3pRUgVotBoJ5VaXERRQ==",
+    "file_path": "/medical-records/download/6957983eefd1d2adfbbdd1de/b1a55c08-e9ee-48e8-a30c-e5bad445b558.docx",
+    "original_filename": "Java_Migration_Executive_Summary_and_Report.docx",
+    "file_size": 40431,
+    "appointment_id": "6958c6a39c5eb492028b41c5",
+    "uploaded_by": "6957983eefd1d2adfbbdd1de",
+    "createdAt": {
+      "$date": "2026-01-03T07:34:59.576000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "696626865a1ca1375a7b51a9"
+    },
+    "patient_id": "696625865a1ca1375a7b519f",
+    "record_type": "pre_appointment",
+    "title": "Pre-appointment: TRANSP1500_CouponNo162.pdf",
+    "description": "gAAAAABpZiaGbKDgN5BhOzwdPDg1x85W5q-_tnMDMAPVec1CIQ7Ud0_Y3mB_uRvwWkdQzYY7iajw8N_6utzqtToCyisXWRjrRjqrUZygkOuGHQ6ps8zrViH_LotlVfvpfLVIuRuShT6JsTms2_FGCH2HG7FSa9C1kA==",
+    "file_path": "/medical-records/download/696625865a1ca1375a7b519f/51c8528c-4a95-435b-b047-d3330fccad1d.pdf",
+    "original_filename": "TRANSP1500_CouponNo162.pdf",
+    "file_size": 73832,
+    "appointment_id": "696626865a1ca1375a7b51a5",
+    "uploaded_by": "696625865a1ca1375a7b519f",
+    "createdAt": {
+      "$date": "2026-01-13T11:03:34.491000"
+    }
+  }
+]

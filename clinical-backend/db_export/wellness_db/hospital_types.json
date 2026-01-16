@@ -1,0 +1,152 @@
+[
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a200"
+    },
+    "name": "General Hospital",
+    "description": "Full-service hospital providing a wide range of medical services",
+    "icon": "🏥",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a201"
+    },
+    "name": "Specialty Hospital",
+    "description": "Hospital focused on specific medical conditions or treatments",
+    "icon": "🏨",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a202"
+    },
+    "name": "Teaching Hospital",
+    "description": "Hospital affiliated with a medical school for training",
+    "icon": "🎓",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a203"
+    },
+    "name": "Community Hospital",
+    "description": "Hospital serving a local community",
+    "icon": "🏘️",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a204"
+    },
+    "name": "Children's Hospital",
+    "description": "Hospital specializing in pediatric care",
+    "icon": "👶",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a205"
+    },
+    "name": "Rehabilitation Center",
+    "description": "Facility for physical and mental rehabilitation",
+    "icon": "🏃",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a206"
+    },
+    "name": "Urgent Care Center",
+    "description": "Facility for non-emergency but urgent medical needs",
+    "icon": "⚡",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a207"
+    },
+    "name": "Psychiatric Hospital",
+    "description": "Hospital specializing in mental health treatment",
+    "icon": "🧠",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a208"
+    },
+    "name": "Multi-Specialty Clinic",
+    "description": "Clinic with multiple medical specialties under one roof",
+    "icon": "🏢",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "694f800b6de2982966b5a209"
+    },
+    "name": "Super Specialty Hospital",
+    "description": "Hospital with advanced specialty departments and technology",
+    "icon": "⭐",
+    "is_active": true,
+    "createdAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    },
+    "updatedAt": {
+      "$date": "2025-12-27T06:43:23.920000"
+    }
+  }
+]
