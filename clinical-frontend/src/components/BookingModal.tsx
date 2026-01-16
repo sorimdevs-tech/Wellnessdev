@@ -85,7 +85,7 @@ export default function BookingModal({
         notes: formData.reason,
       };
 
-      const result = await apiClient.createAppointment(appointmentData);
+      const result = await apiClient.createAppointment(appointmentData) as { id?: string; _id?: string };
 
       if (result) {
         const appointmentId = result.id || result._id;

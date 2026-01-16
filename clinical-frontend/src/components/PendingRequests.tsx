@@ -194,12 +194,12 @@ export default function PendingRequests() {
                             <p className="font-semibold text-gray-900 dark:text-white">
                               {apt.doctorName || "Doctor"}
                             </p>
-                            <p className="text-xs text-blue-600 dark:text-blue-400">{apt.specialty}</p>
+                            <p className="text-xs text-blue-600 dark:text-blue-400">{(apt as any).specialty}</p>
                           </div>
                         </div>
                         <div className="ml-12 space-y-1">
                           <p className="text-sm text-gray-600 dark:text-gray-300">
-                            <span className="font-medium">🏥</span> {apt.hospital}
+                            <span className="font-medium">🏥</span> {(apt as any).hospital}
                           </p>
                           <p className="text-sm text-gray-600 dark:text-gray-300">
                             <span className="font-medium">📅</span> {apt.date} at {apt.time}

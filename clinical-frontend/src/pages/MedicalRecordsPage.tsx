@@ -85,10 +85,10 @@ export default function MedicalRecordsPage() {
 
   useEffect(() => {
     fetchRecords();
-    if (user.currentRole === "doctor") {
+    if (user?.currentRole === "doctor") {
       fetchPatients();
     }
-  }, [user.currentRole]);
+  }, [user?.currentRole]);
 
   const fetchRecords = async () => {
     try {
@@ -98,7 +98,7 @@ export default function MedicalRecordsPage() {
       setRecords(recordsList);
       
       // Extract unique patients from records for doctor view
-      if (user.currentRole === "doctor") {
+      if (user?.currentRole === "doctor") {
         const patientMap = new Map<string, Patient>();
         recordsList.forEach(r => {
           if (r.patient_id && !patientMap.has(r.patient_id)) {
@@ -148,13 +148,13 @@ export default function MedicalRecordsPage() {
     if (!newRecord.title || selectedFiles.length === 0) return;
     
     // For doctors, require patient selection
-    if (user.currentRole === "doctor" && !selectedPatientId) {
+    if (user?.currentRole === "doctor" && !selectedPatientId) {
       alert("Please select a patient");
       return;
     }
     
     // Determine patient ID - for users it's themselves, for doctors it's the selected patient
-    const targetPatientId = user.currentRole === "doctor" ? selectedPatientId : user.id;
+    const targetPatientId = user?.currentRole === "doctor" ? selectedPatientId : user?.id;
     
     setUploading(true);
     try {
@@ -164,7 +164,7 @@ export default function MedicalRecordsPage() {
       for (const file of selectedFiles) {
         const result = await apiClient.uploadMedicalFile(
           file,
-          targetPatientId, // patient_id - either self or selected patient
+          targetPatientId || '', // patient_id - either self or selected patient
           newRecord.title,
           newRecord.record_type,
           newRecord.description || undefined
@@ -264,10 +264,10 @@ export default function MedicalRecordsPage() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {user.currentRole === "doctor" ? "Patient Medical Records" : "Medical Records"}
+            {user?.currentRole === "doctor" ? "Patient Medical Records" : "Medical Records"}
           </h1>
           <p className="text-gray-500 dark:text-gray-400 mt-1">
-            {user.currentRole === "doctor" 
+            {user?.currentRole === "doctor" 
               ? "View and manage medical records for your patients"
               : "Manage and view your medical documents"
             }
@@ -348,7 +348,7 @@ export default function MedicalRecordsPage() {
                       <span className="capitalize">{record.record_type.replace('_', ' ')}</span>
                     </div>
                   )}
-                  {user.currentRole === "doctor" && (record.patient_name || record.patient_id) && (
+                  {user?.currentRole === "doctor" && (record.patient_name || record.patient_id) && (
                     <div className="flex items-center gap-2">
                       <HiUser className="w-4 h-4" />
                       <span>{record.patient_name || `Patient ID: ${record.patient_id}`}</span>
@@ -380,7 +380,7 @@ export default function MedicalRecordsPage() {
                       View
                     </button>
                     {/* Users can delete their own records, doctors can delete patient records */}
-                    {(user.currentRole === "doctor" || record.patient_id === user.id || record.uploaded_by === user.id) && (
+                    {(user?.currentRole === "doctor" || record.patient_id === user?.id || record.uploaded_by === user?.id) && (
                       <button
                         onClick={() => handleDelete(record._id)}
                         className="flex items-center justify-center gap-1 px-3 py-2 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/50 transition text-sm font-medium"
@@ -399,7 +399,7 @@ export default function MedicalRecordsPage() {
           <HiDocument className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No Records Found</h3>
           <p className="text-gray-500 dark:text-gray-400 mb-4">
-            {user.currentRole === "doctor" 
+            {user?.currentRole === "doctor" 
               ? "No patient medical records found. Records will appear here when patients upload documents or when you create records for your patients."
               : searchTerm || filterType !== "all" 
                 ? "Try adjusting your filters" 
@@ -434,7 +434,7 @@ export default function MedicalRecordsPage() {
 
             <div className="p-6 space-y-4">
               {/* Patient Selection for Doctors */}
-              {user.currentRole === "doctor" && (
+              {user?.currentRole === "doctor" && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Select Patient *</label>
                   <select
@@ -570,7 +570,7 @@ export default function MedicalRecordsPage() {
               </button>
               <button
                 onClick={handleUpload}
-                disabled={uploading || !newRecord.title || selectedFiles.length === 0 || (user.currentRole === "doctor" && !selectedPatientId)}
+                disabled={uploading || !newRecord.title || selectedFiles.length === 0 || (user?.currentRole === "doctor" && !selectedPatientId)}
                 className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-emerald-500 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-emerald-600 transition disabled:opacity-50"
               >
                 {uploading ? "Uploading..." : "Upload"}
@@ -612,7 +612,7 @@ export default function MedicalRecordsPage() {
                   <HiCalendar className="w-4 h-4" />
                   <span>{selectedRecord.createdAt ? formatDate(selectedRecord.createdAt) : selectedRecord.date ? formatDate(selectedRecord.date) : 'N/A'}</span>
                 </div>
-                {selectedRecord.patient_id && user.currentRole === "doctor" && (
+                {selectedRecord.patient_id && user?.currentRole === "doctor" && (
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <HiUser className="w-4 h-4" />
                     <span>Patient ID: {selectedRecord.patient_id}</span>
@@ -637,7 +637,7 @@ export default function MedicalRecordsPage() {
                           <button 
                             onClick={async () => {
                               try {
-                                await apiClient.viewMedicalFile(selectedRecord.patient_id || user.id, file.name);
+                                await apiClient.viewMedicalFile(selectedRecord.patient_id || user?.id || '', file.name);
                               } catch (error) {
                                 console.error("View error:", error);
                                 alert("Failed to view file");
@@ -651,7 +651,7 @@ export default function MedicalRecordsPage() {
                           <button 
                             onClick={async () => {
                               try {
-                                await apiClient.downloadMedicalFile(selectedRecord.patient_id || user.id, file.name);
+                                await apiClient.downloadMedicalFile(selectedRecord.patient_id || user?.id || '', file.name);
                               } catch (error) {
                                 console.error("Download error:", error);
                                 alert("Failed to download file");
@@ -681,7 +681,7 @@ export default function MedicalRecordsPage() {
                               // Extract filename from file_path
                               const pathParts = selectedRecord.file_path?.split('/') || [];
                               const fileName = pathParts[pathParts.length - 1];
-                              await apiClient.viewMedicalFile(selectedRecord.patient_id || user.id, fileName);
+                              await apiClient.viewMedicalFile(selectedRecord.patient_id || user?.id || '', fileName);
                             } catch (error) {
                               console.error("View error:", error);
                               alert("Failed to view file");
@@ -698,7 +698,7 @@ export default function MedicalRecordsPage() {
                               // Extract filename from file_path
                               const pathParts = selectedRecord.file_path?.split('/') || [];
                               const fileName = pathParts[pathParts.length - 1];
-                              await apiClient.downloadMedicalFile(selectedRecord.patient_id || user.id, fileName);
+                              await apiClient.downloadMedicalFile(selectedRecord.patient_id || user?.id || '', fileName);
                             } catch (error) {
                               console.error("Download error:", error);
                               alert("Failed to download file");
