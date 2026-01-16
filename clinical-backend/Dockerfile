@@ -7,7 +7,11 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # Install system deps (needed for some Python libs)
-RUN apt-get update && apt-get install -y gcc && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    gcc \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # Install python dependencies
 COPY requirements.txt .
