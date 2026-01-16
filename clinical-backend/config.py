@@ -11,13 +11,13 @@ class Settings(BaseSettings):
     # Email configuration
     smtp_server: str = "smtp.gmail.com"
     smtp_port: int = 587
-    sender_email: str = ""
-    sender_password: str = ""
+    sender_email: str = "sorim.helpdesk@gmail.com"
+    sender_password: str = "ehso trad wtdp otzb"
     
     # Twilio WhatsApp configuration
     twilio_account_sid: str = "ACc0b0230c7f63f4f21fd2805dd49b6031"
     twilio_auth_token: str = "79088266838a4772ce86edbfce36b03e"
-    whatsapp_from: str = ""
+    whatsapp_from: str = "9345089528"
     
     class Config:
         env_file = ".env"
