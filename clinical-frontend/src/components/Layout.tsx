@@ -204,8 +204,7 @@ const [selectedDoctor, setSelectedDoctor] = useState<any | null>(null);
  
             {/* Right Actions */}
             <div className="flex items-center gap-3">
- <div className="relative w-80">
-  {/* Search Icon */}
+ <div className="relative w-72">
   <svg
     className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
     fill="none"
@@ -225,78 +224,9 @@ const [selectedDoctor, setSelectedDoctor] = useState<any | null>(null);
     placeholder="Search doctor here..."
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
-    className="pl-10 pr-4 py-2 w-full rounded-xl bg-gray-100 dark:bg-gray-800 outline-none text-sm text-gray-700 dark:text-gray-200"
+    className="pl-10 pr-4 py-2 w-full rounded-xl bg-gray-100 dark:bg-gray-800 outline-none text-sm"
   />
-
-  {/* 🔽 SEARCH RESULTS PANEL */}
-  {(dbResults.length > 0 || fhirResults.length > 0) && (
-    <div className="absolute top-full mt-2 w-full bg-white dark:bg-gray-900 rounded-xl shadow-xl border z-50 p-4">
-      
-      {/* ===== DATABASE GRID ===== */}
-      {dbResults.length > 0 && (
-        <>
-          <p className="text-xs font-semibold text-gray-500 mb-2">
-            Database Doctors
-          </p>
-
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            {dbResults.map((doc: any) => (
-              <div
-                key={doc.id}
-                onClick={() => {
-                  setSelectedDoctor({ ...doc, source: "db" });
-                  setSearchQuery("");
-                }}
-                className="p-3 rounded-lg border cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
-              >
-                <p className="font-semibold">{doc.name}</p>
-                <p className="text-xs text-gray-500">{doc.email}</p>
-                <p className="text-xs">{doc.specialization}</p>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-
-      {/* ===== FHIR GRID ===== */}
-      {fhirResults.length > 0 && (
-        <>
-          <p className="text-xs font-semibold text-gray-500 mb-2">
-            FHIR Doctors
-          </p>
-
-          <div className="grid grid-cols-2 gap-3">
-            {fhirResults.map((doc: any) => {
-              const name =
-                doc.name?.map((n: any) =>
-                  n.text
-                    ? n.text
-                    : [...(n.given || []), n.family].join(" ")
-                ).join(", ") || "Unknown";
-
-              return (
-                <div
-                  key={doc.id}
-                  onClick={() => {
-                    setSelectedDoctor({ ...doc, source: "fhir" });
-                    setSearchQuery("");
-                  }}
-                  className="p-3 rounded-lg border cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
-                >
-                  <p className="font-semibold">{name}</p>
-                  <p className="text-xs text-gray-500">
-                    {doc.gender || "Gender N/A"}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      )}
-    </div>
-  )}
 </div>
-
 
 
 
