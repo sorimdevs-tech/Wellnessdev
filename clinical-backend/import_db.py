@@ -27,7 +27,7 @@ async def import_database():
     client = AsyncIOMotorClient(settings.mongodb_url)
     db = client[settings.database_name]
     
-    import_dir = "db_export/wellness_db"
+    import_dir = "clinical-backend/db_export/wellness_db"
     
     if not os.path.exists(import_dir):
         print(f"Error: Import directory '{import_dir}' not found!")
@@ -64,10 +64,5 @@ async def import_database():
     client.close()
 
 if __name__ == "__main__":
-    print("WARNING: This will import data into your database.")
-    print("Make sure MongoDB is running and the database is ready.")
-    confirm = input("Continue? (yes/no): ")
-    if confirm.lower() == 'yes':
-        asyncio.run(import_database())
-    else:
-        print("Import cancelled.")
+    print("Importing database...")
+    asyncio.run(import_database())

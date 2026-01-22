@@ -33,7 +33,7 @@ async def create_appointment(appointment_data: AppointmentCreate, user_info = De
     # they are correctly recorded as the patient
     appointment_data.patient_id = user_info["user_id"]
 
-    print(f"DEBUG: Creating appointment - patient_id: {appointment_data.patient_id}, user_id: {user_info['user_id']}, role: {user_info['role']}")
+    print(f"DEBUG: Creating appointment - patient_id: {appointment_data.patient_id}, doctor_id: {appointment_data.doctor_id}, user_id: {user_info['user_id']}, role: {user_info['role']}")
     print(f"DEBUG: user_info: {user_info}")
 
     # Validate doctor exists

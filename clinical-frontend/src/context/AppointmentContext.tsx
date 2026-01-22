@@ -74,6 +74,13 @@ export function AppointmentProvider({
 
   // Fetch appointments from API
   const fetchAppointments = useCallback(async () => {
+    // Check if user is authenticated before fetching
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // User not logged in, skip API call
+      return;
+    }
+    
     setLoading(true);
     try {
       const response = await apiClient.getAppointments();
@@ -112,7 +119,7 @@ export function AppointmentProvider({
     setLoading(false);
   }, []);
 
-  // Load from localStorage on mount and fetch from API
+  // Load from localStorage on mount and fetch from API if authenticated
   useEffect(() => {
     const savedNotifications = localStorage.getItem("notifications");
 
@@ -124,8 +131,11 @@ export function AppointmentProvider({
       }
     }
 
-    // Fetch appointments from API
-    fetchAppointments();
+    // Only fetch appointments if user is authenticated
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetchAppointments();
+    }
   }, [fetchAppointments]);
 
   // Save appointments to localStorage

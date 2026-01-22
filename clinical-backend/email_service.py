@@ -9,6 +9,7 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
 from typing import Optional
 import logging
+from config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -21,23 +22,29 @@ class EmailService:
         self.smtp_port = 587  # Gmail SMTP port
         self.sender_email = "sorim.helpdesk@gmail.com"
         self.sender_password = "ehso trad wtdp otzb"  # ⚠️ Replace with actual App Password
+        
+        # OTP Mode configuration from settings
+        self.otp_mode = settings.otp_mode  # "static" or "email"
+        self.static_otp = settings.static_otp  # Default: "123456"
 
     def generate_otp(self, length: int = 6) -> str:
-        """Generate a random OTP"""
+        """Generate OTP based on configured mode"""
+        if self.otp_mode == "static":
+            return self.static_otp
         return ''.join(random.choices(string.digits, k=length))
 
     def send_otp_email(self, recipient_email: str, otp: str) -> bool:
         """
         Send OTP via email
-        For development, we'll log to console and return success
-        In production, implement real email sending
+        - Static mode: Skip email sending (use 123456)
+        - Email mode: Send real email via SMTP
         """
         try:
-            # For development - just log the OTP (primary method)
-            logger.info(f"OTP for {recipient_email}: {otp}")
-            print(f"\n🔐 DEVELOPMENT MODE - OTP sent to {recipient_email}: {otp}")
-            print(f"📧 Copy this OTP in the app: {otp}")
-            print(f"⏰ This OTP expires in 10 minutes\n")
+            # Check OTP mode - if static, skip email sending
+            if self.otp_mode == "static":
+                return True
+            
+            # Email mode - try to send actual email
 
             # Try to send actual email using SMTP (optional for development)
             try:
@@ -84,17 +91,14 @@ class EmailService:
                 server.login(self.sender_email, self.sender_password)
                 server.sendmail(self.sender_email, recipient_email, message.as_string())
                 server.quit()
-
-                print("📧 Email sent successfully via SMTP!")
             except Exception as email_error:
-                print(f"⚠️  SMTP email failed (continuing with console OTP): {email_error}")
-                print("🔧 For production, configure proper SMTP settings in email_service.py")
+                # SMTP failed - OTP still valid, just not emailed
+                logger.warning(f"SMTP email failed: {email_error}")
 
             return True
 
         except Exception as e:
             logger.error(f"Failed to send OTP: {e}")
-            print(f"❌ OTP sending failed: {e}")
             return False
 
     def send_welcome_email(self, recipient_email: str, user_name: str, user_type: str = "user") -> bool:
@@ -102,11 +106,9 @@ class EmailService:
         Send welcome email to new registered users (especially doctors)
         """
         try:
-            # For development - log to console
-            logger.info(f"Welcome email for {recipient_email} ({user_type})")
-            print(f"\n🎉 DEVELOPMENT MODE - Welcome email sent to {recipient_email}")
-            print(f"👤 User: {user_name} ({user_type})")
-            print("📧 Welcome email sent successfully!\n")
+            # Skip welcome email in static mode
+            if self.otp_mode == "static":
+                return True
 
             # Try to send actual email using SMTP
             try:
@@ -219,17 +221,13 @@ class EmailService:
                 server.login(self.sender_email, self.sender_password)
                 server.sendmail(self.sender_email, recipient_email, message.as_string())
                 server.quit()
-
-                print("📧 Welcome email sent successfully via SMTP!")
             except Exception as email_error:
-                print(f"⚠️  SMTP welcome email failed (continuing with console message): {email_error}")
-                print("🔧 For production, configure proper SMTP settings in email_service.py")
+                logger.warning(f"SMTP welcome email failed: {email_error}")
 
             return True
 
         except Exception as e:
             logger.error(f"Failed to send welcome email: {e}")
-            print(f"❌ Welcome email sending failed: {e}")
             return False
 
 # Global email service instance

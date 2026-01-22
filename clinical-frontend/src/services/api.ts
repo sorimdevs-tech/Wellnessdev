@@ -1,4 +1,4 @@
-// (Removed misplaced sendOtp and verifyOtp from top-level)
+// const API_BASE_URL = "http://localhost:8000";
 const API_BASE_URL = "https://wellnessdev.onrender.com";
 
 export interface ApiResponse<T> {

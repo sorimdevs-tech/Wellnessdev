@@ -27,6 +27,8 @@ export default function NotificationsPanel({
   const [rejectingAppointmentId, setRejectingAppointmentId] = useState<string | null>(null);
   const [rejectingNotificationId, setRejectingNotificationId] = useState<string | null>(null);
   const [rejectionReason, setRejectionReason] = useState("");
+  const [showNotificationDetails, setShowNotificationDetails] = useState(false);
+  const [selectedNotification, setSelectedNotification] = useState<Notification | null>(null);
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -135,12 +137,8 @@ export default function NotificationsPanel({
 
   const handleNotificationClick = (notification: Notification) => {
     handleMarkAsRead(notification.id);
-    
-    // If it's an appointment notification and user is a doctor, navigate to dashboard
-    if (notification.appointmentId && userType === "doctor") {
-      onClose();
-      navigate("/?section=pending");
-    }
+    setSelectedNotification(notification);
+    setShowNotificationDetails(true);
   };
 
   const getNotificationIcon = (type: string) => {
@@ -469,6 +467,215 @@ export default function NotificationsPanel({
           </div>
         )}
       </div>
+
+      {/* NOTIFICATION DETAILS MODAL */}
+      {showNotificationDetails && selectedNotification && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h3 className="text-xl font-bold text-gray-900">Notification Details</h3>
+              <button
+                onClick={() => {
+                  setShowNotificationDetails(false);
+                  setSelectedNotification(null);
+                }}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 space-y-4">
+              {/* Notification Title and Status */}
+              <div className="flex items-center gap-3">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                  selectedNotification.title.includes("Completed") ? "bg-green-100 text-green-600" :
+                  selectedNotification.title.includes("Missed") ? "bg-red-100 text-red-600" :
+                  selectedNotification.title.includes("Rejected") ? "bg-red-100 text-red-600" :
+                  selectedNotification.title.includes("Approved") ? "bg-green-100 text-green-600" :
+                  "bg-blue-100 text-blue-600"
+                }`}>
+                  {selectedNotification.title.includes("Completed") ? (
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                    </svg>
+                  ) : selectedNotification.title.includes("Missed") || selectedNotification.title.includes("Rejected") ? (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                  )}
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900">{selectedNotification.title}</h4>
+                  <p className="text-sm text-gray-500">{formatTime(selectedNotification.createdAt)}</p>
+                </div>
+              </div>
+
+              {/* Notification Message */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h5 className="font-medium text-gray-900 mb-2">Message</h5>
+                <p className="text-gray-700">{selectedNotification.message}</p>
+              </div>
+
+              {/* Appointment Details (if applicable) */}
+              {selectedNotification.appointmentId && (
+                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <h5 className="font-medium text-blue-900 mb-3 flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Appointment Details
+                  </h5>
+
+                  {(() => {
+                    const appointment = selectedNotification.appointmentId
+                      ? appointmentDetails[selectedNotification.appointmentId]
+                      : null;
+
+                    if (appointment) {
+                      return (
+                        <div className="space-y-3">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <p className="text-xs font-medium text-blue-800 uppercase tracking-wide">Date & Time</p>
+                              <p className="text-sm text-blue-900">
+                                {new Date(appointment.appointment_date).toLocaleDateString()} at{' '}
+                                {new Date(appointment.appointment_date).toLocaleTimeString([], {
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-xs font-medium text-blue-800 uppercase tracking-wide">Status</p>
+                              <span className={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
+                                appointment.status === 'approved' ? 'bg-green-100 text-green-800' :
+                                appointment.status === 'pending' ? 'bg-amber-100 text-amber-800' :
+                                appointment.status === 'completed' ? 'bg-green-100 text-green-800' :
+                                appointment.status === 'cancelled' ? 'bg-red-100 text-red-800' :
+                                appointment.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                                'bg-gray-100 text-gray-800'
+                              }`}>
+                                {appointment.status?.charAt(0).toUpperCase() + appointment.status?.slice(1)}
+                              </span>
+                            </div>
+                          </div>
+
+                          {appointment.doctorName && (
+                            <div>
+                              <p className="text-xs font-medium text-blue-800 uppercase tracking-wide">Doctor</p>
+                              <p className="text-sm text-blue-900">{appointment.doctorName}</p>
+                              {appointment.specialty && (
+                                <p className="text-xs text-blue-700">{appointment.specialty}</p>
+                              )}
+                            </div>
+                          )}
+
+                          {appointment.hospital && (
+                            <div>
+                              <p className="text-xs font-medium text-blue-800 uppercase tracking-wide">Hospital</p>
+                              <p className="text-sm text-blue-900">{appointment.hospital}</p>
+                            </div>
+                          )}
+
+                          {appointment.notes && (
+                            <div>
+                              <p className="text-xs font-medium text-blue-800 uppercase tracking-wide">Notes</p>
+                              <p className="text-sm text-blue-900 bg-white p-2 rounded border">{appointment.notes}</p>
+                            </div>
+                          )}
+
+                          {/* Patient Info for doctors */}
+                          {userType === "doctor" && appointment.patient_info && (
+                            <div className="bg-white rounded p-3 border">
+                              <p className="text-xs font-medium text-gray-800 uppercase tracking-wide mb-2">Patient Information</p>
+                              <div className="space-y-1">
+                                <p className="text-sm text-gray-900"><strong>Name:</strong> {appointment.patient_info.name}</p>
+                                {appointment.patient_info.email && (
+                                  <p className="text-sm text-gray-900"><strong>Email:</strong> {appointment.patient_info.email}</p>
+                                )}
+                                {appointment.patient_info.mobile && (
+                                  <p className="text-sm text-gray-900"><strong>Mobile:</strong> {appointment.patient_info.mobile}</p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div className="text-center py-4">
+                          <p className="text-blue-700">Appointment details not available</p>
+                          <p className="text-xs text-blue-600 mt-1">Appointment ID: {selectedNotification.appointmentId}</p>
+                        </div>
+                      );
+                    }
+                  })()}
+                </div>
+              )}
+
+              {/* Notification Metadata */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h5 className="font-medium text-gray-900 mb-2">Notification Info</h5>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Type:</span>
+                    <span className="text-gray-900">{selectedNotification.type || 'appointment'}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">ID:</span>
+                    <span className="text-gray-900 text-xs font-mono">{selectedNotification.id}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Created:</span>
+                    <span className="text-gray-900">{new Date(selectedNotification.createdAt).toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Status:</span>
+                    <span className={`font-semibold ${selectedNotification.read ? 'text-green-600' : 'text-blue-600'}`}>
+                      {selectedNotification.read ? 'Read' : 'Unread'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Actions */}
+            <div className="flex gap-3 p-6 border-t border-gray-200 bg-gray-50 rounded-b-2xl">
+              {selectedNotification.appointmentId && userType === "doctor" && (
+                <button
+                  onClick={() => {
+                    setShowNotificationDetails(false);
+                    setSelectedNotification(null);
+                    onClose();
+                    navigate("/appointments");
+                  }}
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
+                >
+                  View All Appointments
+                </button>
+              )}
+              <button
+                onClick={() => {
+                  setShowNotificationDetails(false);
+                  setSelectedNotification(null);
+                }}
+                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* REJECTION DIALOG */}
       {showRejectDialog && (
