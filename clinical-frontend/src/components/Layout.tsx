@@ -233,7 +233,7 @@ const [fhirResults, setFhirResults] = useState<any[]>([]);
   {(dbResults.length > 0 || fhirResults.length > 0) && (
     <div className="absolute top-full mt-3 w-full z-50">
       {/* Container with enhanced shadow and backdrop */}
-      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
+      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden w-[530px] search-results-panel">
         {/* Header with search summary */}
         <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 border-b border-gray-200/50 dark:border-gray-700/50">
           <div className="flex items-center justify-between">
@@ -264,7 +264,7 @@ const [fhirResults, setFhirResults] = useState<any[]>([]);
         </div>
 
         {/* Scrollable content area */}
-        <div className="max-h-96 overflow-y-auto">
+        <div className="max-h-96 overflow-y-hidden">
           {/* ===== DATABASE DOCTORS SECTION ===== */}
           {dbResults.length > 0 && (
             <div className="p-6">
@@ -277,7 +277,7 @@ const [fhirResults, setFhirResults] = useState<any[]>([]);
                     </svg>
                   </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">
-                    Database Doctors
+                    Wellness Doctors
                   </h4>
                   <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
                     {dbResults.length}
@@ -408,7 +408,7 @@ const [fhirResults, setFhirResults] = useState<any[]>([]);
                     </svg>
                   </div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">
-                    FHIR Healthcare Professionals
+                    FHIR Healthcare
                   </h4>
                   <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-medium rounded-full">
                     {fhirResults.length}
@@ -1132,6 +1132,7 @@ const [fhirResults, setFhirResults] = useState<any[]>([]);
         .animate-slide-in-right {
           animation: slide-in-right 0.3s ease-out;
         }
+        .search-results-panel {        }
       `}</style>
     </div>
   );
