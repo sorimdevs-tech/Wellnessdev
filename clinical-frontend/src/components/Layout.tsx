@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useTheme } from "../context/ThemeContext";
 import { useAppointment } from "../context/AppointmentContext";
-import { apiClient } from "../services/api";
+import { apiClient, fhirApi } from "../services/api";
 import Sidebar from "./Sidebar";
-
+ 
 interface LayoutProps {
   children: React.ReactNode;
 }
-
+ 
 export default function Layout({ children }: LayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,14 +21,70 @@ export default function Layout({ children }: LayoutProps) {
   const [unreadCount, setUnreadCount] = useState(0);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [appointmentDetails, setAppointmentDetails] = useState<Record<string, any>>({});
+  const [searchQuery, setSearchQuery] = useState("");
+const [dbResults, setDbResults] = useState<any[]>([]);
+const [fhirResults, setFhirResults] = useState<any[]>([]);
+const [selectedDoctor, setSelectedDoctor] = useState<any | null>(null);
 
+ 
   // Check if we're on the chat page - hide footer there
   const isChatPage = location.pathname.startsWith('/chat');
-
+ 
   // Determine if user is a doctor
   const isDoctor = user?.userType === "doctor" || user?.currentRole === "doctor";
   const effectiveRole = isDoctor ? "doctor" : "user";
+ 
+  useEffect(() => {
+  if (!searchQuery.trim()) {
+    setDbResults([]);
+    setFhirResults([]);
+    return;
+  }
 
+  const fetchDoctors = async () => {
+    /* ---------- DB SEARCH ---------- */
+    try {
+      const dbRes = await apiClient.getDoctors() as any[];
+      const filtered = dbRes?.filter((doc: any) => 
+        doc.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        doc.email?.toLowerCase().includes(searchQuery.toLowerCase())
+      ) || [];
+      setDbResults(filtered);
+    } catch {
+      setDbResults([]);
+    }
+
+    /* ---------- FHIR SEARCH ---------- */
+    try {
+      const fhirRes = await fhirApi.getPractitioners() as any;
+      const practitioners = fhirRes?.entry || [];
+
+      const filtered = practitioners.filter((p: any) => {
+        const name = p.resource?.name
+          ?.map((n: any) =>
+            n.text
+              ? n.text
+              : [...(n.given || []), n.family].join(" ")
+          )
+          .join(" ")
+          .toLowerCase();
+
+        return name?.includes(searchQuery.toLowerCase());
+      });
+
+      setFhirResults(filtered.map((p: any) => p.resource));
+    } catch {
+      setFhirResults([]);
+    }
+  };
+
+  fetchDoctors();
+}, [searchQuery]);
+
+ 
+ 
+ 
+ 
   // Fetch notifications
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -37,7 +93,7 @@ export default function Layout({ children }: LayoutProps) {
           const notifs = await getNotifications(user.id, effectiveRole as "user" | "doctor");
           setNotifications(notifs);
           setUnreadCount(notifs.filter((n: any) => !n.read).length);
-          
+         
           // For doctors, also fetch appointment details for approve/reject
           if (isDoctor) {
             const appointments = await apiClient.getAppointments() as any[];
@@ -56,12 +112,12 @@ export default function Layout({ children }: LayoutProps) {
       }
     };
     fetchNotifications();
-    
+   
     // Poll for new notifications every 30 seconds
     const interval = setInterval(fetchNotifications, 30000);
     return () => clearInterval(interval);
   }, [user?.id, user?.currentRole, effectiveRole, isDoctor, getNotifications]);
-
+ 
   const refreshNotifications = async () => {
     if (user?.id) {
       try {
@@ -84,7 +140,7 @@ export default function Layout({ children }: LayoutProps) {
       }
     }
   };
-
+ 
   const handleApprove = async (appointmentId: string) => {
     setActionLoading(appointmentId);
     try {
@@ -101,7 +157,7 @@ export default function Layout({ children }: LayoutProps) {
     }
     setActionLoading(null);
   };
-
+ 
   const handleReject = async (appointmentId: string) => {
     const reason = prompt("Please provide a reason for rejection (optional):");
     setActionLoading(appointmentId);
@@ -119,12 +175,12 @@ export default function Layout({ children }: LayoutProps) {
     }
     setActionLoading(null);
   };
-
+ 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
       {/* Sidebar */}
       <Sidebar />
-
+ 
       {/* Main Content Area - Always use ml-64 for expanded sidebar */}
       <div className="ml-64 transition-all duration-300">
         {/* Top Navigation Bar */}
@@ -143,27 +199,131 @@ export default function Layout({ children }: LayoutProps) {
                   day: "numeric",
                 })}
               </p>
+              
             </div>
-
+ 
             {/* Right Actions */}
             <div className="flex items-center gap-3">
-              {/* Theme Toggle */}
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl transition-all group"
-                title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              >
-                {theme === "dark" ? (
-                  <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-                  </svg>
-                ) : (
-                  <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                  </svg>
-                )}
-              </button>
+ <div className="relative w-80">
+  {/* Search Icon */}
+  <svg
+    className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M21 21l-4.35-4.35M16 10a6 6 0 11-12 0 6 6 0 0112 0z"
+    />
+  </svg>
 
+  <input
+    type="text"
+    placeholder="Search doctor here..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="pl-10 pr-4 py-2 w-full rounded-xl bg-gray-100 dark:bg-gray-800 outline-none text-sm text-gray-700 dark:text-gray-200"
+  />
+
+  {/* 🔽 SEARCH RESULTS PANEL */}
+  {(dbResults.length > 0 || fhirResults.length > 0) && (
+    <div className="absolute top-full mt-2 w-full bg-white dark:bg-gray-900 rounded-xl shadow-xl border z-50 p-4">
+      
+      {/* ===== DATABASE GRID ===== */}
+      {dbResults.length > 0 && (
+        <>
+          <p className="text-xs font-semibold text-gray-500 mb-2">
+            Database Doctors
+          </p>
+
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            {dbResults.map((doc: any) => (
+              <div
+                key={doc.id}
+                onClick={() => {
+                  setSelectedDoctor({ ...doc, source: "db" });
+                  setSearchQuery("");
+                }}
+                className="p-3 rounded-lg border cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <p className="font-semibold">{doc.name}</p>
+                <p className="text-xs text-gray-500">{doc.email}</p>
+                <p className="text-xs">{doc.specialization}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* ===== FHIR GRID ===== */}
+      {fhirResults.length > 0 && (
+        <>
+          <p className="text-xs font-semibold text-gray-500 mb-2">
+            FHIR Doctors
+          </p>
+
+          <div className="grid grid-cols-2 gap-3">
+            {fhirResults.map((doc: any) => {
+              const name =
+                doc.name?.map((n: any) =>
+                  n.text
+                    ? n.text
+                    : [...(n.given || []), n.family].join(" ")
+                ).join(", ") || "Unknown";
+
+              return (
+                <div
+                  key={doc.id}
+                  onClick={() => {
+                    setSelectedDoctor({ ...doc, source: "fhir" });
+                    setSearchQuery("");
+                  }}
+                  className="p-3 rounded-lg border cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                >
+                  <p className="font-semibold">{name}</p>
+                  <p className="text-xs text-gray-500">
+                    {doc.gender || "Gender N/A"}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
+    </div>
+  )}
+</div>
+
+
+
+
+ 
+  {/* Theme Toggle */}
+  <button
+    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    className="p-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-xl transition-all group"
+    title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+  >
+    {theme === "dark" ? (
+      <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fillRule="evenodd"
+          d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1z
+          m4 8a4 4 0 11-8 0 4 4 0 018 0z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ) : (
+      <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+      </svg>
+    )}
+  </button>
+ 
+ 
               {/* Notifications */}
               <button
                 onClick={() => setShowNotifications(true)}
@@ -178,7 +338,7 @@ export default function Layout({ children }: LayoutProps) {
                   </span>
                 )}
               </button>
-
+ 
               {/* Settings Icon */}
               <button
                 onClick={() => navigate("/settings")}
@@ -190,7 +350,7 @@ export default function Layout({ children }: LayoutProps) {
                   <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </button>
-
+ 
               {/* Chat Icon */}
               <button
                 onClick={() => navigate("/chat")}
@@ -201,7 +361,7 @@ export default function Layout({ children }: LayoutProps) {
                   <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
               </button>
-
+ 
               {/* Profile Icon */}
               <button
                 onClick={() => navigate("/profile")}
@@ -213,12 +373,12 @@ export default function Layout({ children }: LayoutProps) {
             </div>
           </div>
         </header>
-
+ 
         {/* Page Content */}
         <main className="p-4">
           {children}
         </main>
-
+ 
         {/* Footer - Hidden on chat pages */}
         {!isChatPage && (
           <footer className="bg-gray-900 text-white mt-auto">
@@ -245,7 +405,93 @@ export default function Layout({ children }: LayoutProps) {
           </footer>
         )}
       </div>
+{selectedDoctor && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+    onClick={() => setSelectedDoctor(null)}
+  >
+    <div
+      className="bg-white dark:bg-gray-900 w-full max-w-md rounded-xl shadow-xl p-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Header */}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+          Doctor Details
+        </h2>
+        <button onClick={() => setSelectedDoctor(null)}>✕</button>
+      </div>
 
+      {/* Name */}
+      <div className="mb-3">
+        <p className="text-sm text-gray-500">Name</p>
+        <p className="font-semibold">
+          {selectedDoctor.name?.map((n: any) =>
+            n.text
+              ? n.text
+              : [...(n.given || []), n.family].filter(Boolean).join(" ")
+          ).join(", ") || "Unknown"}
+        </p>
+      </div>
+
+      {/* Gender */}
+      <div className="mb-3">
+        <p className="text-sm text-gray-500">Gender</p>
+        <p className="capitalize">
+          {selectedDoctor.gender || "Not available"}
+        </p>
+      </div>
+
+      {/* Experience (FHIR safe fallback) */}
+      <div className="mb-3">
+        <p className="text-sm text-gray-500">Experience</p>
+        <p>
+          {selectedDoctor.qualification?.length
+            ? `${selectedDoctor.qualification.length}+ years`
+            : "Not available"}
+        </p>
+      </div>
+
+      {/* Email */}
+      <div className="mb-3">
+        <p className="text-sm text-gray-500">Email</p>
+        <p>
+          {selectedDoctor.telecom?.find((t: any) => t.system === "email")?.value ||
+            "Not available"}
+        </p>
+      </div>
+
+      {/* Phone */}
+      <div className="mb-3">
+        <p className="text-sm text-gray-500">Phone</p>
+        <p>
+          {selectedDoctor.telecom?.find((t: any) => t.system === "phone")?.value ||
+            "Not available"}
+        </p>
+      </div>
+
+      {/* Hospital */}
+      <div className="mb-3">
+        <p className="text-sm text-gray-500">Hospital</p>
+        <p>Available via PractitionerRole</p>
+      </div>
+
+      {/* Action */}
+      <div className="mt-5 text-right">
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+          onClick={() => setSelectedDoctor(null)}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
+ 
       {/* Notifications Modal */}
       {showNotifications && (
         <div
@@ -277,7 +523,7 @@ export default function Layout({ children }: LayoutProps) {
                 </svg>
               </button>
             </div>
-
+ 
             <div className="overflow-y-auto h-[calc(100vh-100px)]">
               {notifications.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-16 text-gray-400 dark:text-gray-500">
@@ -304,22 +550,22 @@ export default function Layout({ children }: LayoutProps) {
                     // ONLY show for "New Appointment Request" (receiving doctor) - NOT for "Appointment Requested" (patient who booked)
                     const appointment = notif.appointmentId ? appointmentDetails[notif.appointmentId] : null;
                     const appointmentIsPending = appointment ? appointment.status === "pending" : true;
-                    const showApproveReject = isDoctor && 
-                                              notif.title === "New Appointment Request" && 
+                    const showApproveReject = isDoctor &&
+                                              notif.title === "New Appointment Request" &&
                                               appointmentIsPending;
-
+ 
                     // Handle notification click - mark as read
                     const handleNotificationClick = async () => {
                       if (!notif.read && notif.id) {
                         await markNotificationAsRead(notif.id);
                         // Update local state
-                        setNotifications(prev => 
+                        setNotifications(prev =>
                           prev.map(n => n.id === notif.id ? { ...n, read: true } : n)
                         );
                         setUnreadCount(prev => Math.max(0, prev - 1));
                       }
                     };
-
+ 
                     return (
                     <div
                       key={notif.id || idx}
@@ -355,7 +601,7 @@ export default function Layout({ children }: LayoutProps) {
                             {notif.title}
                           </p>
                           <p className="text-sm text-gray-600 mt-1 line-clamp-2">{notif.message}</p>
-                          
+                         
                           {/* Show pending badge for appointment requests */}
                           {showApproveReject && (
                             <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-bold">
@@ -366,11 +612,11 @@ export default function Layout({ children }: LayoutProps) {
                               Pending Approval
                             </div>
                           )}
-                          
+                         
                           <p className="text-xs text-gray-400 mt-2">
                             {new Date(notif.createdAt).toLocaleString()}
                           </p>
-                          
+                         
                           {/* Approve/Reject Buttons */}
                           {showApproveReject && (
                             <div className="flex gap-2 mt-3">
@@ -442,7 +688,7 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
       )}
-
+ 
       <style>{`
         @keyframes slide-in-right {
           from {
@@ -459,3 +705,5 @@ export default function Layout({ children }: LayoutProps) {
     </div>
   );
 }
+ 
+ 

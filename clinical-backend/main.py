@@ -7,13 +7,14 @@ from routes import auth, users, hospitals, doctors, appointments, medical_record
 from routes.admin import router as admin_router
 from routes.chat import router as chat_router
 import traceback
-
+from fhir.fhir_proxy import router as fhir_router
+ 
 app = FastAPI(
     title="Wellness API",
     description="Healthcare and Wellness Management API",
     version="1.0.0"
 )
-
+ 
 # Request validation error handler
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
@@ -23,12 +24,12 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     for error in exc.errors():
         print(f"  • Field: {error['loc']}, Error: {error['msg']}, Type: {error['type']}")
     print(f"❌ Validation failed with {len(exc.errors())} errors\n")
-
+ 
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content={"detail": exc.errors(), "body": str(await request.body())},
     )
-
+ 
 # Global exception handler (excludes HTTPException which FastAPI handles)
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
@@ -45,7 +46,7 @@ async def global_exception_handler(request: Request, exc: Exception):
             "type": type(exc).__name__
         }
     )
-
+ 
 # CORS Middleware
 app.add_middleware(
     CORSMiddleware,
@@ -54,16 +55,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+ 
 # Event handlers
 @app.on_event("startup")
 async def startup():
     await connect_to_mongo()
-
+ 
 @app.on_event("shutdown")
 async def shutdown():
     await close_mongo_connection()
-
+ 
 # Include routers
 app.include_router(auth)
 app.include_router(users)
@@ -75,7 +76,8 @@ app.include_router(settings)
 app.include_router(notifications)
 app.include_router(admin_router)
 app.include_router(chat_router)
-
+app.include_router(fhir_router)
+ 
 # Health check endpoint
 @app.get("/")
 async def root():
@@ -84,11 +86,13 @@ async def root():
         "version": "1.0.0",
         "status": "running"
     }
-
+ 
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
-
+ 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+ 
+ 
