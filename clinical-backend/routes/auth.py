@@ -286,42 +286,57 @@ async def send_otp(otp_data: OTPSendRequest):
 @router.post("/verify-otp", response_model=TokenResponse)
 async def verify_otp(verify_data: OTPVerifyRequest):
     """Verify OTP and authenticate user"""
-    print(f"DEBUG: verify_otp called with data: email={verify_data.email}, userType={verify_data.userType}, name={verify_data.name}")
+    print(f"DEBUG: verify_otp called with data: email={verify_data.email}, userType={verify_data.userType}, name={verify_data.name}, otp={verify_data.otp}")
     db = get_database()
 
-    # Find the OTP record
-    otp_record = await db.otp.find_one({
-        "email": verify_data.email,
-        "otp": verify_data.otp,
-        "used": False,
-        "expiresAt": {"$gt": datetime.utcnow()}
-    })
-
-    if not otp_record:
-        # Check if OTP exists but is expired or already used
-        existing_otp = await db.otp.find_one({
+    # Check if we're in static OTP mode
+    if settings.otp_mode == "static":
+        # In static mode, just check if the OTP matches the static value
+        if verify_data.otp != settings.static_otp:
+            print(f"❌ OTP mismatch: received '{verify_data.otp}' != expected '{settings.static_otp}'")
+            raise HTTPException(status_code=400, detail="Invalid OTP")
+        print(f"✅ Static OTP verified for {verify_data.email}")
+    else:
+        # Email mode - verify against database
+        # Find the OTP record
+        otp_record = await db.otp.find_one({
             "email": verify_data.email,
-            "otp": verify_data.otp
+            "otp": verify_data.otp,
+            "used": False,
+            "expiresAt": {"$gt": datetime.utcnow()}
         })
 
-        if existing_otp:
-            if existing_otp.get("used", False):
-                raise HTTPException(status_code=400, detail="OTP has already been used")
-            elif existing_otp["expiresAt"] <= datetime.utcnow():
-                raise HTTPException(status_code=400, detail="OTP has expired")
-            else:
-                # Increment attempts
-                await db.otp.update_one(
-                    {"_id": otp_record["_id"]},
-                    {"$inc": {"attempts": 1}}
-                )
-                raise HTTPException(status_code=400, detail="Invalid OTP")
-        else:
-            raise HTTPException(status_code=400, detail="Invalid OTP")
+        if not otp_record:
+            # Check if OTP exists but is expired or already used
+            existing_otp = await db.otp.find_one({
+                "email": verify_data.email,
+                "otp": verify_data.otp
+            })
 
-    # Check attempts limit (max 5 attempts)
-    if otp_record.get("attempts", 0) >= 5:
-        raise HTTPException(status_code=400, detail="Too many failed attempts. Please request a new OTP")
+            if existing_otp:
+                if existing_otp.get("used", False):
+                    raise HTTPException(status_code=400, detail="OTP has already been used")
+                elif existing_otp["expiresAt"] <= datetime.utcnow():
+                    raise HTTPException(status_code=400, detail="OTP has expired")
+                else:
+                    # Increment attempts
+                    await db.otp.update_one(
+                        {"_id": otp_record["_id"]},
+                        {"$inc": {"attempts": 1}}
+                    )
+                    raise HTTPException(status_code=400, detail="Invalid OTP")
+            else:
+                raise HTTPException(status_code=400, detail="Invalid OTP")
+
+        # Check attempts limit (max 5 attempts)
+        if otp_record.get("attempts", 0) >= 5:
+            raise HTTPException(status_code=400, detail="Too many failed attempts. Please request a new OTP")
+
+        # Mark OTP as used (only for email mode)
+        await db.otp.update_one(
+            {"_id": otp_record["_id"]},
+            {"$set": {"used": True}}
+        )
 
     # Find or create user
     user = await db.users.find_one({"email": verify_data.email})
@@ -352,25 +367,20 @@ async def verify_otp(verify_data: OTPVerifyRequest):
             await db.doctors.insert_one(doctor_doc)
             print(f"Created doctor profile for user {result.inserted_id}")
 
-    # Mark OTP as used
-    await db.otp.update_one(
-        {"_id": otp_record["_id"]},
-        {"$set": {"used": True}}
-    )
-
-    # Send welcome email for newly registered users (doctors get special welcome)
-    user_type = user.get("userType", "user")
-    if user_type == "doctor":
-        try:
-            email_service.send_welcome_email(verify_data.email, user.get("name", verify_data.email.split("@")[0]), "doctor")
-        except Exception as e:
-            print(f"Warning: Failed to send doctor welcome email: {e}")
-    else:
-        # Send welcome email for regular users too
-        try:
-            email_service.send_welcome_email(verify_data.email, user.get("name", verify_data.email.split("@")[0]), "user")
-        except Exception as e:
-            print(f"Warning: Failed to send welcome email: {e}")
+    # Send welcome email for newly registered users (only in email mode)
+    if settings.otp_mode == "email":
+        user_type = user.get("userType", "user")
+        if user_type == "doctor":
+            try:
+                email_service.send_welcome_email(verify_data.email, user.get("name", verify_data.email.split("@")[0]), "doctor")
+            except Exception as e:
+                print(f"Warning: Failed to send doctor welcome email: {e}")
+        else:
+            # Send welcome email for regular users too
+            try:
+                email_service.send_welcome_email(verify_data.email, user.get("name", verify_data.email.split("@")[0]), "user")
+            except Exception as e:
+                print(f"Warning: Failed to send welcome email: {e}")
 
     # Create access token
     user_id = str(user["_id"])
