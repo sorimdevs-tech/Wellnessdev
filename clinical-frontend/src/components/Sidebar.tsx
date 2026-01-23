@@ -44,7 +44,33 @@ export default function Sidebar() {
         </svg>
       ),
     },
-
+    {
+      name: "FHIR Platforms",
+      path: "/fhir-platforms",
+      icon: (
+        <svg
+    className="w-5 h-5"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    {/* Cloud */}
+    <path
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3 15a4 4 0 004 4h10a4 4 0 000-8h-.26A6 6 0 105.34 9.34"
+    />
+    {/* Medical cross */}
+    <path
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 11v6M9 14h6"
+    />
+  </svg>
+      ),
+    },
     {
       name: "Messages",
       path: "/chat",
