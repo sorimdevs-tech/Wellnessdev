@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import DoctorDashboard from "./pages/DoctorDashboard";
+import DoctorPatientsPage from "./pages/DoctorPatientsPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminChatPage from "./pages/AdminChatPage";
 import AppointmentsPage from "./pages/AppointmentsPage";
@@ -107,6 +108,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <DoctorDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/doctor/patients"
+        element={
+          <ProtectedRoute>
+            <DoctorPatientsPage />
           </ProtectedRoute>
         }
       />
