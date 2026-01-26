@@ -342,12 +342,17 @@ export const apiClient = {
   async getMedicalRecord(recordId: string) {
     return fetchAPI(`/medical-records/${recordId}`);
   },
- 
+
   async updateMedicalRecord(recordId: string, data: any) {
     return fetchAPI(`/medical-records/${recordId}`, {
       method: "PUT",
       body: JSON.stringify(data),
     });
+  },
+
+  // Doctor Patient Consultations
+  async getDoctorPatientConsultations(period: string = "all") {
+    return fetchAPI(`/appointments/doctor/patient-consultations?period=${period}`);
   },
  
   // Feedback

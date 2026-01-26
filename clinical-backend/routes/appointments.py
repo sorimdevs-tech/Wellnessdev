@@ -978,32 +978,32 @@ async def submit_appointment_feedback(
 ):
     """Submit feedback/review for a completed appointment"""
     from email_service import email_service
-    
+
     try:
         db = get_database()
-        
+
         # Validate ObjectId format
         if not ObjectId.is_valid(appointment_id):
             raise HTTPException(status_code=400, detail="Invalid appointment ID format")
-        
+
         # Verify appointment exists and is completed
         appointment = await db.appointments.find_one({"_id": ObjectId(appointment_id)})
         if not appointment:
             raise HTTPException(status_code=404, detail="Appointment not found")
-        
+
         if appointment["status"] != "completed":
             raise HTTPException(status_code=400, detail="Can only submit feedback for completed appointments")
-        
+
         # Verify the user is the patient who had the appointment
         if appointment["patient_id"] != user_info["user_id"]:
             raise HTTPException(status_code=403, detail="Not authorized to submit feedback for this appointment")
-        
+
         # Get user details for email
         patient = await db.users.find_one({"_id": ObjectId(user_info["user_id"])})
         patient_name = patient.get("name", "Patient") if patient else "Patient"
         patient_email = patient.get("email") if patient else None
         patient_mobile = feedback_data.get("mobile") or (patient.get("mobile") if patient else None)
-        
+
         # Get doctor details
         doctor_id = feedback_data.get("doctorId") or appointment.get("doctor_id")
         doctor_name = "Doctor"
@@ -1011,7 +1011,7 @@ async def submit_appointment_feedback(
             doctor_user = await db.users.find_one({"_id": ObjectId(doctor_id)})
             if doctor_user:
                 doctor_name = doctor_user.get("name", "Doctor")
-        
+
         # Create feedback document
         feedback_doc = {
             "appointment_id": appointment_id,
@@ -1024,16 +1024,16 @@ async def submit_appointment_feedback(
             "feedback": feedback_data.get("feedback", ""),
             "created_at": datetime.utcnow()
         }
-        
+
         # Store feedback in feedback collection
         await db.feedbacks.insert_one(feedback_doc)
-        
+
         # Update appointment with feedback flag
         await db.appointments.update_one(
             {"_id": ObjectId(appointment_id)},
             {"$set": {"has_feedback": True, "feedback_rating": feedback_data.get("rating", 0)}}
         )
-        
+
         # Update doctor's average rating
         if doctor_id:
             # Calculate new average rating for doctor
@@ -1042,17 +1042,17 @@ async def submit_appointment_feedback(
                 {"$group": {"_id": None, "avg_rating": {"$avg": "$rating"}, "count": {"$sum": 1}}}
             ]
             rating_result = await db.feedbacks.aggregate(pipeline).to_list(1)
-            
+
             if rating_result:
                 avg_rating = round(rating_result[0]["avg_rating"], 1)
                 review_count = rating_result[0]["count"]
-                
+
                 # Update doctor profile with new rating
                 await db.doctors.update_one(
                     {"user_id": doctor_id},
                     {"$set": {"rating": avg_rating, "review_count": review_count}}
                 )
-        
+
         # Send thank you email to the patient
         if patient_email:
             try:
@@ -1066,17 +1066,129 @@ async def submit_appointment_feedback(
             except Exception as email_error:
                 print(f"⚠️ Failed to send thank you email: {email_error}")
                 # Don't fail the request if email fails
-        
+
         return {
-            "message": "Feedback submitted successfully", 
+            "message": "Feedback submitted successfully",
             "success": True,
             "email_sent": patient_email is not None
         }
-        
+
     except HTTPException:
         raise
     except Exception as e:
         import traceback
         print("[ERROR] submit_appointment_feedback exception:", e)
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Internal server error: {e}")
+
+@router.get("/doctor/patient-consultations")
+async def get_doctor_patient_consultations(
+    period: str = "all",
+    user_info = Depends(get_current_user_with_role)
+):
+    """Get patient consultation data for doctors with time period filtering"""
+    try:
+        db = get_database()
+
+        # Only doctors can access this endpoint
+        if user_info["role"] != "doctor":
+            raise HTTPException(status_code=403, detail="Only doctors can access patient consultation data")
+
+        # Get doctor IDs for this user
+        doctor_ids = await get_doctor_ids_for_user(db, user_info["user_id"])
+
+        # Calculate date range based on period
+        from datetime import datetime, timedelta
+        now = datetime.utcnow()
+
+        if period == "30days":
+            start_date = now - timedelta(days=30)
+        elif period == "60days":
+            start_date = now - timedelta(days=60)
+        elif period == "90days":
+            start_date = now - timedelta(days=90)
+        elif period == "6months":
+            start_date = now - timedelta(days=180)
+        elif period == "1year":
+            start_date = now - timedelta(days=365)
+        else:  # "all" or any other value
+            start_date = None
+
+        # Build query
+        query = {"doctor_id": {"$in": doctor_ids}}
+        if start_date:
+            query["appointment_date"] = {"$gte": start_date}
+
+        # Get appointments with patient details
+        pipeline = [
+            {"$match": query},
+            {"$sort": {"appointment_date": -1}},  # Most recent first
+            {
+                "$lookup": {
+                    "from": "users",
+                    "localField": "patient_id",
+                    "foreignField": "_id",
+                    "as": "patient"
+                }
+            },
+            {"$unwind": {"path": "$patient", "preserveNullAndEmptyArrays": True}},
+            {
+                "$project": {
+                    "_id": 1,
+                    "appointment_date": 1,
+                    "status": 1,
+                    "consultationType": 1,
+                    "notes": 1,
+                    "createdAt": 1,
+                    "patient_name": "$patient.name",
+                    "patient_email": "$patient.email",
+                    "patient_mobile": "$patient.mobile",
+                    "patient_id": 1
+                }
+            }
+        ]
+
+        appointments = await db.appointments.aggregate(pipeline).to_list(length=10000)
+
+        # Format the data for frontend
+        consultations = []
+        for apt in appointments:
+            # Decrypt notes if present
+            notes = apt.get("notes", "")
+            if notes:
+                try:
+                    from routes.auth import decrypt_data
+                    notes = decrypt_data(notes)
+                except:
+                    notes = "Encrypted note"
+
+            consultation = {
+                "id": str(apt["_id"]),
+                "patient_name": apt.get("patient_name", "Unknown Patient"),
+                "patient_mobile": apt.get("patient_mobile", ""),
+                "patient_email": apt.get("patient_email", ""),
+                "issue": notes or "No specific issue mentioned",
+                "enquiry_date": apt.get("createdAt", apt.get("appointment_date")),
+                "appointment_time": apt.get("appointment_date"),
+                "status": apt.get("status", "unknown"),
+                "consultation_type": apt.get("consultationType", "In-Person")
+            }
+            consultations.append(consultation)
+
+        # Group by time periods for summary stats
+        summary = {
+            "total_patients": len(set(apt["patient_id"] for apt in appointments if apt.get("patient_id"))),
+            "total_consultations": len(appointments),
+            "period": period,
+            "consultations": consultations
+        }
+
+        return summary
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        import traceback
+        print("[ERROR] get_doctor_patient_consultations exception:", e)
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Internal server error: {e}")
