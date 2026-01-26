@@ -16,6 +16,7 @@ import SessionManager from "./components/SessionManager";
 import AppointmentReminder from "./components/AppointmentReminder";
 import Layout from "./components/Layout";
 import ChatPage from "./pages/ChatPage";
+import FHIRPlatformsPage from "./components/FHIRPlatform";
 
 // Protected route component with Layout
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -50,6 +51,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/fhir-platforms"
+        element={
+          <ProtectedRoute>
+            <FHIRPlatformsPage />
           </ProtectedRoute>
         }
       />
