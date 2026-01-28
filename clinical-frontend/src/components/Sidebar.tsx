@@ -45,6 +45,22 @@ export default function Sidebar() {
       ),
     },
     {
+  name: "Patient Overview",
+  path: "/patient-overview",
+  roles: ["user", "doctor"],  
+  icon: (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16 14a4 4 0 10-8 0m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2v-2m8 0a4 4 0 00-8 0m8-6a4 4 0 11-8 0 4 4 0 018 0z"
+      />
+    </svg>
+  ),
+},
+ 
+    {
       name: "FHIR Platforms",
       path: "/fhir-platforms",
       icon: (
@@ -61,6 +77,8 @@ export default function Sidebar() {
       strokeLinejoin="round"
       d="M3 15a4 4 0 004 4h10a4 4 0 000-8h-.26A6 6 0 105.34 9.34"
     />
+
+    
     {/* Medical cross */}
     <path
       strokeWidth={2}

@@ -17,7 +17,7 @@ import AppointmentReminder from "./components/AppointmentReminder";
 import Layout from "./components/Layout";
 import ChatPage from "./pages/ChatPage";
 import FHIRPlatformsPage from "./components/FHIRPlatform";
-
+import PatientDashboard from "./pages/PatientOverviewTable";
 // Protected route component with Layout
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isInitialized } = useUser();
@@ -67,6 +67,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <AppointmentsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/patient-overview"
+        element={
+          <ProtectedRoute>
+            <PatientDashboard />
           </ProtectedRoute>
         }
       />
