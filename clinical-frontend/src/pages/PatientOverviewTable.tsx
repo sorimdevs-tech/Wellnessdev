@@ -10,11 +10,11 @@ import {
   createColumnHelper,
 } from '@tanstack/react-table';
 import { useNavigate } from "react-router-dom";
- 
+
 // ------------------- TYPES -------------------
 type DateFilter = "30" | "60" | "90" | "180" | "365" | "all";
 type StatusFilter = "all" | "inprogress" | "completed";
- 
+
 interface UserProfile {
   _id: string;
   name: string;
@@ -29,7 +29,7 @@ interface UserProfile {
   userType: string;
   currentRole?: string;
 }
- 
+
 interface PatientRecord {
   id: string;
   patientId: string;
@@ -48,7 +48,7 @@ interface PatientRecord {
   feedbackRating: number;
   isReceivingDoctor: boolean;
 }
- 
+
 // ------------------- PATIENT MODAL -------------------
 // ✅ ALL INTERFACES DECLARED HERE - No import issues!
 interface MedicalRecord {
@@ -63,7 +63,7 @@ interface MedicalRecord {
   appointment_id?: string;
   created_at?: string;
 }
- 
+
 interface PatientProfile {
   name: string;
   dateOfBirth?: string;
@@ -71,7 +71,7 @@ interface PatientProfile {
   mobile?: string;
   email?: string;
 }
- 
+
 interface PatientRecord {
   id: string;
   patientId: string;
@@ -81,7 +81,7 @@ interface PatientRecord {
   status: string;
   notes?: string;
 }
- 
+
 const PatientModal = ({
   isOpen,
   onClose,
@@ -94,10 +94,10 @@ const PatientModal = ({
   const [medicalRecords, setMedicalRecords] = useState<MedicalRecord[]>([]);
   const [docsLoading, setDocsLoading] = useState(false);
   const [showDocumentsSection, setShowDocumentsSection] = useState(false);
- 
+
   useEffect(() => {
     if (!patient?.id) return;
- 
+
     const fetchMedicalRecords = async () => {
       try {
         setDocsLoading(true);
@@ -124,28 +124,28 @@ const PatientModal = ({
         setDocsLoading(false);
       }
     };
- 
+
     fetchMedicalRecords();
   }, [patient?.id]);
- 
+
   if (!isOpen || !patient) return null;
- 
+
   const profile = patient.profile;
   const dob = profile.dateOfBirth ? new Date(profile.dateOfBirth) : null;
- 
+
   const calculateAge = (date: Date): number => {
     const diff = Date.now() - date.getTime();
     const ageDate = new Date(diff);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
- 
+
   const formatFileSize = (bytes?: number): string => {
     if (!bytes) return "Unknown size";
     const kb = bytes / 1024;
     if (kb < 1024) return `${kb.toFixed(1)} KB`;
     return `${(kb / 1024).toFixed(1)} MB`;
   };
- 
+
   const getFileIcon = (name?: string, recordType?: string): string => {
     if (!name) return "📄";
     const lowerName = name.toLowerCase();
@@ -157,7 +157,7 @@ const PatientModal = ({
     if (recordType === "pre_appointment") return "📎";
     return "📄";
   };
- 
+
   const handleDownloadMedicalFile = async (record: MedicalRecord): Promise<void> => {
     try {
       const fileName = record.original_filename || record.file_name || record.title || "document";
@@ -167,7 +167,7 @@ const PatientModal = ({
       alert("Failed to download file. Please try again.");
     }
   };
- 
+
   const handleViewMedicalFile = async (record: MedicalRecord): Promise<void> => {
     try {
       const fileName = record.original_filename || record.file_name || record.title || "document";
@@ -177,7 +177,7 @@ const PatientModal = ({
       alert("Failed to view file. Please try again.");
     }
   };
- 
+
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[10000] p-4">
       <div
@@ -199,7 +199,7 @@ const PatientModal = ({
             </button>
           </div>
         </div>
- 
+
         <div className="p-8 grid lg:grid-cols-3 gap-8">
           {/* LEFT COLUMN - Profile */}
           <div>
@@ -214,7 +214,7 @@ const PatientModal = ({
                 </span>
               )}
             </div>
- 
+
             <div className="space-y-3">
               {profile.dateOfBirth && (
                 <div className="p-4 bg-gray-50 rounded-2xl">
@@ -242,7 +242,7 @@ const PatientModal = ({
               )}
             </div>
           </div>
- 
+
           {/* MIDDLE COLUMN - Appointment Details */}
           <div>
             <h3 className="text-xl font-bold text-gray-900 mb-6">Appointment Details</h3>
@@ -264,7 +264,7 @@ const PatientModal = ({
               </div>
             </div>
           </div>
- 
+
           {/* RIGHT COLUMN - Notes & Medical Records */}
           <div>
             <h3 className="text-xl font-bold text-gray-900 mb-4">Patient Notes</h3>
@@ -273,7 +273,7 @@ const PatientModal = ({
               readOnly
               className="w-full h-40 p-4 bg-white border rounded-2xl text-sm resize-none focus:outline-none"
             />
- 
+
             {/* MEDICAL RECORDS BUTTON */}
             <div className="mt-4">
               <button
@@ -290,14 +290,14 @@ const PatientModal = ({
                 )}
               </button>
             </div>
- 
+
             {/* MEDICAL RECORDS SECTION */}
             {showDocumentsSection && (
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <h4 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                   🏥 Medical Records ({medicalRecords.length})
                 </h4>
- 
+
                 {docsLoading ? (
                   <div className="flex items-center justify-center py-12">
                     <div className="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin" />
@@ -336,7 +336,7 @@ const PatientModal = ({
                             )}
                           </div>
                         </div>
- 
+
                         <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200">
                           <button
                             onClick={() => handleViewMedicalFile(record)}
@@ -371,13 +371,12 @@ const PatientModal = ({
     </div>
   );
 };
- 
- 
+
 // ------------------- CUSTOM HOOK -------------------
 const usePatientData = (userId: string) => {
   const [records, setRecords] = useState<PatientRecord[]>([]);
   const [loading, setLoading] = useState(true);
- 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -423,9 +422,9 @@ const usePatientData = (userId: string) => {
             };
           })
          : [];
- 
+
         const userRecords = mappedRecords.filter(r => r.isReceivingDoctor && userId);
- 
+
         setRecords(
           userRecords.sort(
             (a, b) => new Date(b.appointmentDate).getTime() - new Date(a.appointmentDate).getTime()
@@ -438,13 +437,13 @@ const usePatientData = (userId: string) => {
         setLoading(false);
       }
     };
- 
+
     if (userId) fetchData();
   }, [userId]);
- 
+
   return { records, loading };
 };
- 
+
 // ------------------- STATUS COLOR HELPER -------------------
 const getStatusColor = (status: string) => {
   const colors: Record<string, string> = {
@@ -458,7 +457,7 @@ const getStatusColor = (status: string) => {
   };
   return colors[status.toLowerCase()] || "bg-gray-100 text-gray-800 border-2 border-gray-200";
 };
- 
+
 // ------------------- MAIN COMPONENT -------------------
 export default function PatientOverviewTable() {
   const { user } = useUser();
@@ -471,7 +470,7 @@ export default function PatientOverviewTable() {
  
   const { records, loading } = usePatientData(userId);
 const [rowSelection, setRowSelection] = useState({});
- 
+
   // Table columns - NOTES column first after basic columns
   const columns = useMemo(() => {
     const columnHelper = createColumnHelper<PatientRecord>();
@@ -481,7 +480,7 @@ const [rowSelection, setRowSelection] = useState({});
   id: 'name',
   header: 'Patient',
   size: 220,
- 
+
   cell: ({ row }) => (
     <div className="flex items-center gap-1">
      
@@ -496,7 +495,7 @@ const [rowSelection, setRowSelection] = useState({});
           </div>
         )}
       </div>
- 
+
       {/* Small neat human icon AFTER name */}
       <div className="w-5 h-5 flex items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-purple-600 text-white shrink-0">
         <svg
@@ -514,15 +513,15 @@ const [rowSelection, setRowSelection] = useState({});
           />
         </svg>
       </div>
- 
+
     </div>
   ),
 }),
- 
+
       // Date & Time
       columnHelper.accessor('appointmentDate', {
         id: 'date',
-        header: 'Date & Day',
+        header: 'Appointment Date',
         size: 160,
         cell: ({ row }) => (
           <div>
@@ -565,7 +564,7 @@ columnHelper.accessor('notes', {
       : notes;
   },
 }),
- 
+
       // Status - IMPROVED styling
       columnHelper.accessor('status', {
         id: 'status',
@@ -582,11 +581,11 @@ columnHelper.accessor('notes', {
       }),
     ];
   }, []);
- 
+
   // Filtered data
   const tableData = useMemo(() => {
     let filtered = records;
- 
+
     // Status filter
 if (statusFilter !== "all") {
   if (statusFilter === "inprogress") {
@@ -599,7 +598,7 @@ if (statusFilter !== "all") {
     );
   }
 }
- 
+
     // Date filter
     if (dateFilter !== "all") {
       const days = parseInt(dateFilter);
@@ -607,7 +606,7 @@ if (statusFilter !== "all") {
       cutoff.setDate(cutoff.getDate() - days);
       filtered = filtered.filter(r => new Date(r.appointmentDate) >= cutoff);
     }
- 
+
     // Search filter (includes notes)
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase().trim();
@@ -620,41 +619,41 @@ if (statusFilter !== "all") {
         (r.notes || "").toLowerCase().includes(term)
       );
     }
- 
+
     return filtered;
   }, [records, searchTerm, dateFilter, statusFilter]);
- 
+
   // Table instance
   const table = useReactTable({
   data: tableData,
   columns,
- 
+
   state: {
     rowSelection,
   },
- 
+
   enableRowSelection: true,
   onRowSelectionChange: setRowSelection,
- 
+
   getCoreRowModel: getCoreRowModel(),
   getSortedRowModel: getSortedRowModel(),
   getPaginationRowModel: getPaginationRowModel(),
- 
+
   initialState: {
     pagination: {
       pageSize: 10,
     },
   },
 });
- 
+
   const handleViewPatient = (patient: PatientRecord) => {
     setSelectedPatient(patient);
   };
- 
+
   const handleCloseModal = () => {
     setSelectedPatient(null);
   };
- 
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
@@ -665,16 +664,16 @@ if (statusFilter !== "all") {
       </div>
     );
   }
- 
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="p-8 max-w-10xl mx-auto">
         {/* Header */}
         <div className="mb-8">
- 
+
         {/* Stats + Compact Search + Filters */}
 <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6 bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
- 
+
   {/* Stats Cards */}
   <div className="flex items-center gap-4 flex-wrap">
   <div className={`text-center p-3 border rounded-xl min-w-[72px] cursor-pointer transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${
@@ -683,7 +682,7 @@ if (statusFilter !== "all") {
     <div className="text-xl font-bold text-blue-600">{tableData.length}</div>
     <div className="text-xs font-medium text-blue-800">Total</div>
   </div>
- 
+
   <div className={`text-center p-3 border rounded-xl min-w-[72px] cursor-pointer transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${
     statusFilter === "inprogress" ? "bg-yellow-100 border-yellow-300 shadow-lg ring-2 ring-yellow-200" : "bg-yellow-50 border border-yellow-100 hover:bg-yellow-100"
   }`} onClick={() => setStatusFilter("inprogress")}>
@@ -696,7 +695,7 @@ if (statusFilter !== "all") {
     </div>
     <div className="text-xs font-medium text-yellow-800">In Progress</div>
   </div>
- 
+
   <div className={`text-center p-3 border rounded-xl min-w-[72px] cursor-pointer transition-all duration-200 hover:shadow-md hover:scale-[1.02] ${
     statusFilter === "completed" ? "bg-green-100 border-green-300 shadow-lg ring-2 ring-green-200" : "bg-green-50 border border-green-100 hover:bg-green-100"
   }`} onClick={() => setStatusFilter("completed")}>
@@ -706,10 +705,10 @@ if (statusFilter !== "all") {
     <div className="text-xs font-medium text-green-800">Completed</div>
   </div>
 </div>
- 
+
   {/* Right Side Controls */}
   <div className="flex items-center gap-4 flex-wrap">
- 
+
     {/* Compact Search */}
     <div className="w-64">
       <div className="relative">
@@ -725,7 +724,7 @@ if (statusFilter !== "all") {
         </svg>
       </div>
     </div>
- 
+
     {/* Filters & Clear */}
     <div className="flex items-center gap-4">
       <select
@@ -733,14 +732,14 @@ if (statusFilter !== "all") {
         onChange={(e) => setDateFilter(e.target.value as DateFilter)}
         className="px-5 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white shadow-sm"
       >
-        <option value="30">30 Days</option>
-        <option value="60">60 Days</option>
-        <option value="90">90 Days</option>
-        <option value="180">6 Month</option>
-        <option value="365">1 Year</option>
+        <option value="30">30days</option>
+        <option value="60">60days</option>
+        <option value="90">90days</option>
+        <option value="180">6month</option>
+        <option value="365">1year</option>
         <option value="all">All</option>
       </select>
- 
+
       {(searchTerm || dateFilter !== '30' || statusFilter !== 'all') && (
         <button
           onClick={() => {
@@ -757,8 +756,7 @@ if (statusFilter !== "all") {
   </div>
 </div>
         </div>
- 
- 
+
      
 {/* Table */}
 <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -767,12 +765,12 @@ if (statusFilter !== "all") {
   <thead className="bg-gray-50">
     {table.getHeaderGroups().map(headerGroup => (
       <tr key={headerGroup.id}>
- 
+
         {/* Row Number Header */}
-        <th className="w-10 px-1 py-2 text-xs font-semibold text-gray-400 border-b border-gray-200 text-left">
+        {/* <th className="w-10 px-1 py-2 text-xs font-semibold text-gray-400 border-b border-gray-200 text-left">
           S.NO
-        </th>
- 
+        </th> */}
+
         {/* Select All Checkbox */}
         <th className="w-12 px-1 py-2 border-b border-gray-200 text-center">
           {/* <input
@@ -782,7 +780,7 @@ if (statusFilter !== "all") {
             className="w-4 h-4 cursor-pointer"
           /> */}
         </th>
- 
+
         {headerGroup.headers.map(header => (
           <th
             key={header.id}
@@ -792,7 +790,7 @@ if (statusFilter !== "all") {
           >
             <div className="flex items-center gap-1">
               {flexRender(header.column.columnDef.header, header.getContext())}
- 
+
               {{
                 asc: <span className="text-gray-400 text-[10px]">▲</span>,
                 desc: <span className="text-gray-400 text-[10px]">▼</span>,
@@ -805,7 +803,7 @@ if (statusFilter !== "all") {
       </tr>
     ))}
   </thead>
- 
+
   <tbody className="divide-y divide-gray-100">
     {table.getRowModel().rows.map((row, index) => (
       <tr
@@ -816,10 +814,10 @@ if (statusFilter !== "all") {
         onClick={() => handleViewPatient(row.original)}
       >
         {/* Row Number */}
-        <td className="px-2 py-3 text-sm text-gray-400">
+        {/* <td className="px-2 py-3 text-sm text-gray-400">
           {index + 1}
-        </td>
- 
+        </td> */}
+
         {/* Row Checkbox */}
         <td
           className="px-2 py-3 text-center"
@@ -833,7 +831,7 @@ if (statusFilter !== "all") {
             className="w-4 h-4 cursor-pointer"
           /> */}
         </td>
- 
+
         {row.getVisibleCells().map(cell => (
           <td
             key={cell.id}
@@ -843,7 +841,7 @@ if (statusFilter !== "all") {
             {/* PATIENT COLUMN OVERRIDE */}
             {cell.column.id === "patientName" ? (
               <div className="flex items-center gap-1">
-                {/* <span className="font-medium text-gray-900"></span> */}
+                <span className="font-medium text-gray-900"></span>
                 <div className="w-5 h-5 flex items-center justify-center rounded-md bg-gradient-to-br from-indigo-500 to-purple-600 text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -870,22 +868,20 @@ if (statusFilter !== "all") {
     ))}
   </tbody>
 </table>
- 
- 
+
   </div>
- 
- 
+
   {/* Pagination Footer */}
   <div className="px-6 py-4 bg-white border-t border-gray-200">
     <div className="flex items-center justify-between">
- 
+
       {/* Showing entries text */}
       <div className="text-sm text-gray-500">
         Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
       </div>
- 
+
       <div className="flex items-center gap-3">
- 
+
         {/* Previous Button */}
         <button
           onClick={() => table.previousPage()}
@@ -894,7 +890,7 @@ if (statusFilter !== "all") {
         >
           ‹
         </button>
- 
+
         {/* Next Button */}
         <button
           onClick={() => table.nextPage()}
@@ -903,7 +899,7 @@ if (statusFilter !== "all") {
         >
           ›
         </button>
- 
+
         {/* Page Size Select */}
         <select
           value={table.getState().pagination.pageSize}
@@ -920,8 +916,7 @@ if (statusFilter !== "all") {
     </div>
   </div>
 </div>
- 
- 
+
         {/* Empty State */}
         {table.getRowModel().rows.length === 0 && !loading && (
           <div className="text-center py-20 px-8 bg-white rounded-2xl border border-gray-200 shadow-sm mt-8">
@@ -934,7 +929,7 @@ if (statusFilter !== "all") {
             <p className="text-lg text-gray-500 mb-8 max-w-md mx-auto">Try adjusting your filters or check back later.</p>
           </div>
         )}
- 
+
         {/* Patient Modal */}
         <PatientModal
           isOpen={!!selectedPatient}
@@ -945,4 +940,5 @@ if (statusFilter !== "all") {
     </div>
   );
 }
- 
+
+

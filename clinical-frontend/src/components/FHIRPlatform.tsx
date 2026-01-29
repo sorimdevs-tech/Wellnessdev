@@ -283,7 +283,7 @@ const paginatedData = filteredData.slice(
     
     {/* LEFT: TITLE */}
     <h1 className="text-2xl font-bold tracking-tight text-gray-900">
-      🧬 FHIR Data Explorer
+      🧬 FHIR Interoperability Framework
     </h1>
 
     {/* RIGHT: SEARCH + FILTER */}

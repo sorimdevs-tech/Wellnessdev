@@ -52,6 +52,7 @@ export default function Dashboard() {
   const [schedule, setSchedule] = useState(mockDoctorData.schedule);
   const [recentReviews, setRecentReviews] = useState(mockDoctorData.reviews);
   const [loading, setLoading] = useState(false);
+const [selectedAppointment, setSelectedAppointment] = useState<any>(null);
 
   const fetchDoctorDashboardData = async () => {
     if (!user?.id) return;
@@ -138,26 +139,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Earnings Overview */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {[
-          { title: "Today's Earnings", value: `₹${earnings.today.toLocaleString()}`, icon: "💵", color: "from-emerald-500 to-emerald-600" },
-          { title: "This Month", value: `₹${earnings.monthly.toLocaleString()}`, icon: "📆", color: "from-blue-500 to-blue-600" },
-          { title: "Total Earnings", value: `₹${earnings.total.toLocaleString()}`, icon: "📊", color: "from-purple-500 to-purple-600" },
-          { title: "Pending Payments", value: `₹${earnings.pendingPayments.toLocaleString()}`, icon: "🧾", color: "from-amber-500 to-amber-600" },
-        ].map((card, idx) => (
-          <div key={idx} className="group bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-white/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-            <div className={`text-2xl mb-2`}>{card.icon}</div>
-            <p className="text-sm text-gray-600 mb-1">{card.title}</p>
-            <p className={`text-2xl font-bold bg-gradient-to-r ${card.color} bg-clip-text text-transparent group-hover:scale-105 transition-transform`}>
-              {loading ? (
-                <span className="inline-block w-20 h-8 bg-gray-200 rounded animate-pulse"></span>
-              ) : card.value}
-            </p>
-          </div>
-        ))}
-      </div>
-
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* My Schedule */}
@@ -210,26 +191,47 @@ export default function Dashboard() {
 
         {/* Work Stats */}
         <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 p-8 space-y-6">
-          <h2 className="text-xl font-bold text-gray-900">My Work Stats</h2>
-          <div className="space-y-4">
-            {[
-              { label: "Total Patients Treated", value: stats.totalPatients, icon: "👥", color: "text-blue-600" },
-              { label: "Appointments This Week", value: stats.weeklyAppointments, icon: "📅", color: "text-emerald-600" },
-              { label: "Completed Consultations", value: stats.completedConsultations, icon: "✅", color: "text-purple-600" },
-              { label: "Follow-ups Pending", value: stats.pendingFollowups, icon: "🔄", color: "text-orange-600" },
-            ].map((stat, idx) => (
-              <div key={idx} className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl hover:shadow-md transition-all">
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">{loading ? (
-                    <span className="inline-block w-16 h-8 bg-gray-200 rounded animate-pulse"></span>
-                  ) : stat.value}</p>
-                  <p className="text-sm text-gray-600">{stat.label}</p>
-                </div>
-                <div className={`text-2xl ${stat.color}`}>{stat.icon}</div>
-              </div>
-            ))}
-          </div>
+  <h2 className="text-xl font-bold text-gray-900">My Work Stats</h2>
+  <div className="space-y-4">
+    {[
+      { label: "Total Patients Treated", value: stats.totalPatients, icon: "👥", color: "text-blue-600" },
+      { label: "Appointments This Week", value: stats.weeklyAppointments, icon: "📅", color: "text-emerald-600" },
+      { label: "Completed Consultations", value: stats.completedConsultations, icon: "✅", color: "text-purple-600" },
+      { label: "Follow-ups Pending", value: stats.pendingFollowups, icon: "🔄", color: "text-orange-600" },
+    ].map((stat, idx) => (
+      <div
+        key={idx}
+        className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl hover:shadow-md transition-all cursor-pointer group"
+        onClick={() => {
+          // Dynamic modal data based on stat clicked
+          const statData = {
+            id: `stat-${idx}`,
+            status: idx === 3 ? "pending" : idx === 2 ? "completed" : "scheduled",
+            patientName: stat.label,
+            date: idx === 1 ? "This Week" : "All Time",
+            time: stat.value.toString(),
+            consultationType: stat.label.includes("Patients") ? "Unique" :
+                           stat.label.includes("Week") ? "Weekly" :
+                           stat.label.includes("Consultations") ? "Completed" : "Pending"
+          };
+          setSelectedAppointment(statData);
+        }}
+      >
+        <div>
+          <p className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+            {loading ? (
+              <span className="inline-block w-16 h-8 bg-gray-200 rounded animate-pulse"></span>
+            ) : stat.value}
+          </p>
+          <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors">{stat.label}</p>
         </div>
+        <div className={`text-2xl ${stat.color} group-hover:scale-110 transition-transform duration-200`}>
+          {stat.icon}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
       </div>
 
       {/* Reviews & Notifications */}
@@ -283,7 +285,7 @@ export default function Dashboard() {
       </div>
 
       {/* Documents & Settings */}
-      <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 p-8">
+      {/* <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 p-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 className="text-lg font-bold text-gray-900 mb-4">Documents</h3>
@@ -318,8 +320,9 @@ export default function Dashboard() {
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
   );
 }
+

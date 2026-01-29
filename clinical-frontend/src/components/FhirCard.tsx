@@ -254,14 +254,14 @@ const [showTooltip, setShowTooltip] = useState(false);
 
           {resource.telecom?.find((t: any) => t.system === "phone")?.value && (
             <Info
-              label="Phone number"
+              label="Phone:"
               value={resource.telecom.find((t: any) => t.system === "phone")!.value}
             />
           )}
 
           {resource.telecom?.find((t: any) => t.system === "email")?.value && (
             <Info
-              label="Email"
+              label="Email:"
               value={
                 <>
                   <span
@@ -283,12 +283,12 @@ const [showTooltip, setShowTooltip] = useState(false);
 
 
           {getFullAddress() && (
-            <Info label="Address" value={getFullAddress()} />
+            <Info label="Address:" value={getFullAddress()} />
           )}
 
           {resource.meta?.lastUpdated && (
             <Info
-              label="Registration Date"
+              label="Registration:"
               value={formatDate(resource.meta.lastUpdated)}
             />
           )}
