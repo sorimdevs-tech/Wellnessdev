@@ -1,5 +1,5 @@
 // const API_BASE_URL = "http://localhost:8000";
-const API_BASE_URL = "https://wellness-page.onrender.com";
+const API_BASE_URL = "http://localhost:8000";
  
 export interface ApiResponse<T> {
   data?: T;
