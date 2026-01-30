@@ -7,7 +7,7 @@ import { apiClient } from "../services/api";
 interface NotificationsPanelProps {
   isOpen: boolean;
   onClose: () => void;
-  userId: string;
+  userId: any;
   userType: "user" | "doctor";
 }
 
