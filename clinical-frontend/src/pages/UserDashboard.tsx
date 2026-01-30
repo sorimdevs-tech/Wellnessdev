@@ -1001,6 +1001,16 @@ export default function UserDashboard() {
           <span className="font-semibold">Appointment booked successfully!</span>
         </div>
       )}
+
+      {/* NOTIFICATIONS PANEL */}
+      {user && (
+        <NotificationsPanel
+          isOpen={showNotifications}
+          onClose={() => setShowNotifications(false)}
+          userId={user.id}
+          userType={user.currentRole === "doctor" ? "doctor" : "user"}
+        />
+      )}
     </div>
   );
 }
