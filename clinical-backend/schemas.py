@@ -269,6 +269,9 @@ class AppointmentUpdate(BaseModel):
     status: Optional[AppointmentStatus] = None
     notes: Optional[str] = None
 
+class RejectAppointmentRequest(BaseModel):
+    reason: Optional[str] = None
+
 class PatientInfo(BaseModel):
     id: str
     name: str

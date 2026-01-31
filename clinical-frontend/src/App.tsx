@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { UserProvider, useUser } from "./context/UserContext";
 import { AppointmentProvider } from "./context/AppointmentContext";
 import Login from "./pages/Login";
@@ -18,6 +18,7 @@ import AppointmentReminder from "./components/AppointmentReminder";
 import Layout from "./components/Layout";
 import ChatPage from "./pages/ChatPage";
 import FHIRPlatformsPage from "./components/FHIRPlatform";
+import { useEffect, useRef } from "react";
 
 // Protected route component with Layout
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -42,8 +43,31 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <Layout>{children}</Layout>;
 }
 
+function useRouteTimer() {
+  const location = useLocation();
+  const startTimeRef = useRef<number>(performance.now());
+ 
+  useEffect(() => {
+    const endTime = performance.now();
+    const duration = endTime - startTimeRef.current;
+ 
+    console.log(
+      `⏱️ Page ${location.pathname} loaded in ${duration.toFixed(2)} ms`
+    );
+ 
+    // Reset timer for next navigation
+    startTimeRef.current = performance.now();
+  }, [location]);
+}
+function RouteChangeTracker() {
+  useRouteTimer();
+  return null;
+}
 function AppRoutes() {
   return (
+  
+    <>
+      <RouteChangeTracker />
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -153,6 +177,7 @@ function AppRoutes() {
       />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    </>
   );
 }
 

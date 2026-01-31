@@ -33,27 +33,34 @@ export default function Dashboard() {
 
   const fetchDashboardData = async () => {
     if (!user?.id) return;
-    
+
     try {
       // Fetch appointments
       const appointments = await apiClient.getAppointments();
       if (appointments && Array.isArray(appointments)) {
         const total = appointments.length;
-        const pending = appointments.filter((apt: any) => apt.status === "pending").length;
-        const upcoming = appointments.filter((apt: any) => 
-          apt.status === "scheduled" || apt.status === "upcoming" || apt.status === "approved"
-        ).length;
-        const completed = appointments.filter((apt: any) => apt.status === "completed").length;
-        const cancelled = appointments.filter((apt: any) => 
-          apt.status === "cancelled" || apt.status === "rejected"
-        ).length;
-        
+
+        console.log("DEBUG: All appointments:", appointments);
+
+        const pending = appointments.filter((apt: any) => apt.status?.toLowerCase() === "pending").length;
+        const upcoming = appointments.filter((apt: any) => {
+          const s = apt.status?.toLowerCase();
+          return s === "scheduled" || s === "upcoming" || s === "approved";
+        }).length;
+        const completed = appointments.filter((apt: any) => apt.status?.toLowerCase() === "completed").length;
+        const cancelled = appointments.filter((apt: any) => {
+          const s = apt.status?.toLowerCase();
+          return s === "cancelled" || s === "rejected";
+        }).length;
+
+        console.log(`DEBUG: Stats calculated - Total: ${total}, Cancelled: ${cancelled}, Pending: ${pending}`);
+
         setStats({ total, upcoming, completed, cancelled, pending });
         setRecentAppointments(appointments.slice(0, 5));
-        
+
         // For doctors, filter pending appointments
         if (user.currentRole === "doctor") {
-          const pendingApts = appointments.filter((apt: any) => apt.status === "pending");
+          const pendingApts = appointments.filter((apt: any) => apt.status?.toLowerCase() === "pending");
           setPendingAppointments(pendingApts);
         }
       }
@@ -284,14 +291,14 @@ export default function Dashboard() {
         <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wide">Recent Appointments</h3>
-            <button 
+            <button
               onClick={() => navigate("/appointments")}
               className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
             >
               View All →
             </button>
           </div>
-          
+
           {loading ? (
             <div className="space-y-3">
               {[1, 2, 3].map((i) => (
@@ -342,7 +349,7 @@ export default function Dashboard() {
               {notifications.filter((n) => !n.read).length} unread
             </span>
           </div>
-          
+
           {loading ? (
             <div className="space-y-3">
               {[1, 2, 3].map((i) => (
@@ -361,16 +368,14 @@ export default function Dashboard() {
               {notifications.map((notif, idx) => (
                 <div
                   key={notif.id || idx}
-                  className={`p-3 rounded-xl transition-colors ${
-                    !notif.read ? "bg-blue-50 dark:bg-blue-900/30" : "bg-gray-50 dark:bg-gray-700/50"
-                  }`}
+                  className={`p-3 rounded-xl transition-colors ${!notif.read ? "bg-blue-50 dark:bg-blue-900/30" : "bg-gray-50 dark:bg-gray-700/50"
+                    }`}
                 >
                   <div className="flex items-start gap-3">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                      notif.type?.includes("confirmed") ? "bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400" :
-                      notif.type?.includes("cancelled") || notif.type?.includes("rejected") ? "bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400" :
-                      "bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
-                    }`}>
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${notif.type?.includes("confirmed") ? "bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400" :
+                        notif.type?.includes("cancelled") || notif.type?.includes("rejected") ? "bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400" :
+                          "bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
+                      }`}>
                       {notif.type?.includes("confirmed") ? (
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />

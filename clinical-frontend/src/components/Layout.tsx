@@ -366,7 +366,11 @@ const [fhirResults, setFhirResults] = useState<any[]>([]);
                     </div>
 
                     {/* Enhanced tooltip */}
-                    <div className="absolute left-full ml-3 top-1/2 transform -translate-y-1/2 px-4 py-3 bg-gray-900 text-white text-sm rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 whitespace-nowrap min-w-max">
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3
+  px-4 py-3 bg-gray-900 text-white text-sm rounded-lg shadow-xl
+  opacity-0 group-hover:opacity-100 transition-opacity duration-200
+  pointer-events-none z-50 whitespace-nowrap min-w-max">
+
                       <div className="space-y-2">
                         <div className="font-semibold border-b border-gray-700 pb-1">{doc.name}</div>
                         <div className="space-y-1 text-xs">
@@ -496,7 +500,8 @@ const [fhirResults, setFhirResults] = useState<any[]>([]);
                       </div>
 
                       {/* Enhanced FHIR tooltip */}
-                      <div className="absolute left-full ml-3 top-1/2 transform -translate-y-1/2 px-4 py-3 bg-gray-900 text-white text-sm rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 whitespace-nowrap min-w-max">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0
+  border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900">
                         <div className="space-y-2">
                           <div className="font-semibold border-b border-gray-700 pb-1">{name}</div>
                           <div className="space-y-1 text-xs">

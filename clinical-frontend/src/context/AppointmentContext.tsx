@@ -53,7 +53,7 @@ interface AppointmentContextType {
   confirmAppointment: (appointmentId: string) => void;
   approveAppointment: (appointmentId: string) => Promise<boolean>;
   rejectAppointment: (appointmentId: string, reason?: string) => Promise<boolean>;
-  cancelAppointment: (appointmentId: string) => void;
+  cancelAppointment: (appointmentId: string) => Promise<void>;
   getNotifications: (userId: string, userType: "user" | "doctor") => Promise<Notification[]>;
   markNotificationAsRead: (notificationId: string) => Promise<void>;
   clearNotifications: (userId: string, userType: "user" | "doctor") => void;
@@ -75,7 +75,7 @@ export function AppointmentProvider({
   // Fetch appointments from API
   const fetchAppointments = useCallback(async () => {
     // Check if user is authenticated before fetching
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("authToken");
     if (!token) {
       // User not logged in, skip API call
       return;
@@ -132,7 +132,7 @@ export function AppointmentProvider({
     }
 
     // Only fetch appointments if user is authenticated
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("authToken");
     if (token) {
       fetchAppointments();
     }
@@ -279,31 +279,45 @@ export function AppointmentProvider({
     }
   };
 
-  const cancelAppointment = (appointmentId: string) => {
+  const cancelAppointment = async (appointmentId: string) => {
     // Find appointment first before updating state
     const appointmentToCancel = appointments.find((apt) => apt.id === appointmentId);
     if (!appointmentToCancel) return;
 
-    setAppointments((prev) =>
-      prev.map((apt) =>
-        apt.id === appointmentId ? { ...apt, status: "cancelled" } : apt
-      )
-    );
+    try {
+      console.log(`🚨 cancelAppointment: calling API to cancel ${appointmentId}`);
+      const resp = await apiClient.cancelAppointment(appointmentId);
+      console.log(`🚨 cancelAppointment: API response for ${appointmentId}:`, resp);
 
-    // Notification for user
-    const userNotification: Notification = {
-      id: `notif_${Date.now()}_cancelled_user`,
-      type: "appointment_cancelled",
-      title: "Appointment Cancelled",
-      message: `Your appointment with Dr. ${appointmentToCancel.doctorName} on ${appointmentToCancel.date} at ${appointmentToCancel.time} has been cancelled.`,
-      recipientId: appointmentToCancel.userId,
-      recipientType: "user",
-      appointmentId,
-      read: false,
-      createdAt: new Date().toISOString(),
-    };
+      // Update local state optimistically after successful API call
+      setAppointments((prev) =>
+        prev.map((apt) =>
+          apt.id === appointmentId ? { ...apt, status: "cancelled" } : apt
+        )
+      );
 
-    setNotifications((prev) => [userNotification, ...prev]);
+      // Notification for user
+      const userNotification: Notification = {
+        id: `notif_${Date.now()}_cancelled_user`,
+        type: "appointment_cancelled",
+        title: "Appointment Cancelled",
+        message: `Your appointment with Dr. ${appointmentToCancel.doctorName} on ${appointmentToCancel.date} at ${appointmentToCancel.time} has been cancelled.`,
+        recipientId: appointmentToCancel.userId,
+        recipientType: "user",
+        appointmentId,
+        read: false,
+        createdAt: new Date().toISOString(),
+      };
+
+      setNotifications((prev) => [userNotification, ...prev]);
+      
+      console.log(`🚨 cancelAppointment: fetching latest appointments after cancelling ${appointmentId}`);
+      await fetchAppointments();
+      console.log(`🚨 cancelAppointment: fetchAppointments completed for ${appointmentId}`);
+    } catch (error) {
+      console.error("Failed to cancel appointment:", error);
+      throw error; // Re-throw to let caller handle the error
+    }
   };
 
   const getNotifications = async (

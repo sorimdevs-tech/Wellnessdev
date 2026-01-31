@@ -39,7 +39,7 @@ export default function AppointmentsPage() {
   const navigate = useNavigate();
   const { user } = useUser();
   const { theme } = useTheme();
-  const { getNotifications, confirmAppointment, cancelAppointment } = useAppointment();
+  const { getNotifications, confirmAppointment, cancelAppointment, fetchAppointments: refetchAppointmentsFromContext } = useAppointment();
   const isDark = theme === "dark";
   
   // View mode state - grid, list or calendar
@@ -52,7 +52,7 @@ export default function AppointmentsPage() {
   const [sortField, setSortField] = useState<"doctor" | "date" | "type" | "status" | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   
-  const [activeTab, setActiveTab] = useState<"pending" | "upcoming" | "completed" | "missed" | "rejected" | "book" | "schedule">(
+  const [activeTab, setActiveTab] = useState<"pending" | "upcoming" | "completed" | "missed" | "rejected" | "cancelled" | "book" | "schedule">(
     // Default to "upcoming" tab
     "upcoming"
   );
@@ -438,8 +438,9 @@ export default function AppointmentsPage() {
       case "completed":
         return "bg-blue-500";
       case "cancelled":
-      case "rejected":
         return "bg-red-500";
+      case "rejected":
+        return "bg-teal-500";
       default:
         return "bg-gray-500";
     }
@@ -455,8 +456,9 @@ export default function AppointmentsPage() {
       case "completed":
         return isDark ? "bg-blue-900/20 border-blue-800" : "bg-blue-50 border-blue-200";
       case "cancelled":
-      case "rejected":
         return isDark ? "bg-red-900/20 border-red-800" : "bg-red-50 border-red-200";
+      case "rejected":
+        return isDark ? "bg-teal-900/20 border-teal-800" : "bg-teal-50 border-teal-200";
       default:
         return isDark ? "bg-gray-800 border-gray-700" : "bg-gray-50 border-gray-200";
     }
@@ -571,17 +573,37 @@ export default function AppointmentsPage() {
     }
   };
 
-  const handleCancelAppointment = async (id: string) => {
-    try {
-      await cancelAppointment(id);
-      fetchAppointments();
-      setSelectedAppointment(null);
-    } catch (error) {
-      console.error("Failed to cancel:", error);
-    }
-  };
+const handleCancelAppointment = async (id: string) => {
+  setActionLoading(id);
+  try {
+    // Call backend API to cancel appointment
+    await cancelAppointment(id);
+    
+    // ✅ Update local appointments list optimistically
+    setAppointments((prev) =>
+      prev.map((apt) => (apt.id === id ? { ...apt, status: "cancelled" } : apt))
+    );
 
-  const filterAppointments = (status: "pending" | "upcoming" | "completed" | "missed" | "rejected" | "book") => {
+    // ✅ Update selected appointment in modal
+    setSelectedAppointment((prev) =>
+      prev?.id === id ? { ...prev, status: "cancelled" } : prev
+    );
+
+    alert("✅ Appointment cancelled successfully!");
+    // Don't refetch immediately - trust the local state update
+    // Backend is correctly updated, refetch will happen on next navigation or page refresh
+
+  } catch (error) {
+    console.error("Failed to cancel:", error);
+    alert("❌ Failed to cancel appointment. Please try again.");
+    // Refetch on error to show accurate state from backend
+    await refetchAppointmentsFromContext();
+  } finally {
+    setActionLoading(null);
+  }
+};
+
+  const filterAppointments = (status: "pending" | "upcoming" | "completed" | "missed" | "rejected" | "cancelled" | "book") => {
     if (status === "book") return [];
     const now = new Date();
     if (status === "upcoming") {
@@ -603,6 +625,10 @@ export default function AppointmentsPage() {
     if (status === "rejected") {
       // Rejected appointments
       return appointments.filter((apt) => apt.status === "rejected");
+    }
+    if (status === "cancelled") {
+      // Cancelled appointments
+      return appointments.filter((apt) => apt.status === "cancelled");
     }
     // For pending and completed, filter directly by status
     return appointments.filter((apt) => apt.status === status);
@@ -759,7 +785,7 @@ export default function AppointmentsPage() {
       case "cancelled":
         return "bg-red-100 text-red-700 border-red-300";
       case "rejected":
-        return "bg-red-100 text-red-700 border-red-300";
+        return "bg-teal-100 text-teal-700 border-teal-300";
       case "missed":
         return "bg-rose-100 text-rose-700 border-rose-300";
       case "pending":
@@ -822,6 +848,7 @@ export default function AppointmentsPage() {
         completed: { title: "No Completed Appointments", subtitle: "Your appointment history will be displayed here." },
         missed: { title: "No Missed Appointments", subtitle: "You have maintained an excellent attendance record." },
         rejected: { title: "No Declined Appointments", subtitle: "There are no declined appointment requests." },
+        cancelled: { title: "No Cancelled Appointments", subtitle: "You have no cancelled appointments." },
       };
       const msg = emptyMessages[activeTab] || { title: "No appointments", subtitle: "" };
 
@@ -928,8 +955,8 @@ export default function AppointmentsPage() {
       scheduled: { bg: isDark ? "bg-blue-900/20" : "bg-blue-50", text: isDark ? "text-blue-400" : "text-blue-700", label: "Scheduled" },
       upcoming: { bg: isDark ? "bg-blue-900/20" : "bg-blue-50", text: isDark ? "text-blue-400" : "text-blue-700", label: "Scheduled" },
       completed: { bg: isDark ? "bg-gray-700" : "bg-gray-100", text: isDark ? "text-gray-300" : "text-gray-700", label: "Completed" },
-      cancelled: { bg: isDark ? "bg-gray-700" : "bg-gray-100", text: isDark ? "text-gray-400" : "text-gray-600", label: "Cancelled" },
-      rejected: { bg: isDark ? "bg-red-900/20" : "bg-red-50", text: isDark ? "text-red-400" : "text-red-700", label: "Declined" },
+      cancelled: { bg: isDark ? "bg-red-900/20" : "bg-red-50", text: isDark ? "text-red-400" : "text-red-700", label: "Cancelled" },
+      rejected: { bg: isDark ? "bg-teal-900/20" : "bg-teal-50", text: isDark ? "text-teal-400" : "text-teal-700", label: "Declined" },
       missed: { bg: isDark ? "bg-orange-900/20" : "bg-orange-50", text: isDark ? "text-orange-400" : "text-orange-700", label: "Missed" },
       rescheduled: { bg: isDark ? "bg-purple-900/20" : "bg-purple-50", text: isDark ? "text-purple-400" : "text-purple-700", label: "Rescheduled" },
     };
@@ -1894,7 +1921,7 @@ export default function AppointmentsPage() {
                             pending: { bg: "bg-amber-500", border: "border-l-4 border-amber-300", text: "text-white" },
                             completed: { bg: "bg-gray-500", border: "border-l-4 border-gray-400", text: "text-white" },
                             cancelled: { bg: "bg-red-500", border: "border-l-4 border-red-300", text: "text-white" },
-                            rejected: { bg: "bg-red-500", border: "border-l-4 border-red-300", text: "text-white" },
+                            rejected: { bg: "bg-teal-500", border: "border-l-4 border-teal-300", text: "text-white" },
                             missed: { bg: "bg-rose-500", border: "border-l-4 border-rose-300", text: "text-white" },
                           };
                           const colors = statusColors[apt.status as keyof typeof statusColors] || statusColors.pending;

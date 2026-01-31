@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useUser } from "../context/UserContext";
 import { useAppointment } from "../context/AppointmentContext";
 
@@ -8,10 +8,16 @@ export default function DoctorDashboard() {
     appointments,
     confirmAppointment,
     cancelAppointment,
+    fetchAppointments,
   } = useAppointment();
   const [activeTab, setActiveTab] = useState<string>("dashboard");
 
   const doctorId = user?.id || "";
+
+  // Refetch appointments when component mounts to get latest data
+  useEffect(() => {
+    fetchAppointments();
+  }, [fetchAppointments]);
 
   const doctorAppointments = useMemo(
     () => appointments.filter((apt) => apt.doctorId === doctorId),

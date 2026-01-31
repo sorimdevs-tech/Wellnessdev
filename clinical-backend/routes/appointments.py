@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, Depends
 from bson import ObjectId
 from datetime import datetime
-from typing import List
+from typing import List, Union
 from database import get_database
-from schemas import AppointmentCreate, AppointmentUpdate, AppointmentResponse
+from schemas import AppointmentCreate, AppointmentUpdate, AppointmentResponse, RejectAppointmentRequest
 from routes.auth import get_current_user, get_current_user_with_role
 from auth import encrypt_data, decrypt_data
 from routes.notifications import create_notification
@@ -350,9 +350,9 @@ async def get_appointment(appointment_id: str, user_info = Depends(get_current_u
             raise HTTPException(status_code=403, detail="Cannot access this appointment")
     else:
         # Users can only access their own appointments
-        apt_patient_id = str(appointment["patient_id"])  # Convert ObjectId to string
-        if apt_patient_id != user_info["user_id"]:
-            raise HTTPException(status_code=403, detail="Cannot access this appointment")
+            apt_patient_id = str(appointment["patient_id"])  # Convert ObjectId to string
+            if apt_patient_id != str(user_info["user_id"]):
+                raise HTTPException(status_code=403, detail="Cannot access this appointment")
 
     appointment["_id"] = str(appointment["_id"])
     # Convert ObjectIds to strings for JSON serialization
@@ -407,11 +407,11 @@ async def update_appointment(appointment_id: str, appointment_data: AppointmentU
     # Check access permissions
     if user_info["role"] == "doctor":
         doctor_ids = await get_doctor_ids_for_user(db, user_info["user_id"])
-        if appointment["doctor_id"] not in doctor_ids:
+        if str(appointment.get("doctor_id")) not in doctor_ids:
             raise HTTPException(status_code=403, detail="Cannot update this appointment")
     else:
         # Users can only update their own appointments
-        if appointment["patient_id"] != user_info["user_id"]:
+        if str(appointment.get("patient_id")) != user_info["user_id"]:
             raise HTTPException(status_code=403, detail="Cannot update this appointment")
 
     try:
@@ -454,11 +454,11 @@ async def delete_appointment(appointment_id: str, user_info = Depends(get_curren
     # Check access permissions
     if user_info["role"] == "doctor":
         doctor_ids = await get_doctor_ids_for_user(db, user_info["user_id"])
-        if appointment["doctor_id"] not in doctor_ids:
+        if str(appointment.get("doctor_id")) not in doctor_ids:
             raise HTTPException(status_code=403, detail="Cannot delete this appointment")
     else:
         # Users can only delete their own appointments
-        if appointment["patient_id"] != user_info["user_id"]:
+        if str(appointment.get("patient_id")) != user_info["user_id"]:
             raise HTTPException(status_code=403, detail="Cannot delete this appointment")
 
     try:
@@ -491,7 +491,7 @@ async def approve_appointment(appointment_id: str, user_info = Depends(get_curre
 
     # Check if doctor has access to this appointment
     doctor_ids = await get_doctor_ids_for_user(db, user_info["user_id"])
-    if appointment["doctor_id"] not in doctor_ids:
+    if str(appointment.get("doctor_id")) not in doctor_ids:
         raise HTTPException(status_code=403, detail="Cannot approve this appointment")
 
     # Check if appointment is pending
@@ -551,9 +551,18 @@ async def approve_appointment(appointment_id: str, user_info = Depends(get_curre
     return {"message": "Appointment approved successfully"}
 
 @router.put("/{appointment_id}/reject")
-async def reject_appointment(appointment_id: str, reason: str = None, user_info = Depends(get_current_user_with_role)):
+async def reject_appointment(
+    appointment_id: str, 
+    request: Union[RejectAppointmentRequest, None] = None, 
+    user_info = Depends(get_current_user_with_role)
+):
     """Doctor or Patient rejects/cancels an appointment"""
     db = get_database()
+    
+    # Extract reason from request body if present
+    reason = request.reason if request else None
+    
+    print(f"🚨 [REJECT API] Call received for {appointment_id} with reason: '{reason}' by user {user_info['user_id']} ({user_info['role']})")
 
     # Get the appointment
     try:
@@ -564,37 +573,62 @@ async def reject_appointment(appointment_id: str, reason: str = None, user_info 
     if not appointment:
         raise HTTPException(status_code=404, detail="Appointment not found")
 
+    print(f"🚨 [REJECT API] Found appointment: status={appointment.get('status')}, patient={appointment.get('patient_id')}, doctor={appointment.get('doctor_id')}")
+
     # Check if user has access to this appointment
     is_doctor = user_info["role"] == "doctor"
-    is_patient = appointment["patient_id"] == user_info["user_id"]
+    is_patient = str(appointment.get("patient_id")) == user_info["user_id"]
     
     if is_doctor:
         doctor_ids = await get_doctor_ids_for_user(db, user_info["user_id"])
-        if appointment["doctor_id"] not in doctor_ids:
+        if str(appointment.get("doctor_id")) not in doctor_ids:
+            print(f"🚨 [REJECT API] Access denied: Doctor {user_info['user_id']} not associated with appointment doctor {appointment.get('doctor_id')}")
             raise HTTPException(status_code=403, detail="Cannot reject this appointment")
     elif not is_patient:
+        print(f"🚨 [REJECT API] Access denied: User {user_info['user_id']} is not the patient")
         raise HTTPException(status_code=403, detail="Cannot reject this appointment")
 
     # Check if appointment can be cancelled (pending, approved, or scheduled)
-    if appointment["status"] not in ["pending", "approved", "scheduled"]:
+    # Allow cancelling even if already cancelled/rejected to ensure state consistency (idempotency)
+    # But generally we want to restrict to active states.
+    # However, for fixing "rewind" issues, we should ensure the DB is definitely updated.
+    current_status = appointment.get("status")
+    if current_status not in ["pending", "approved", "scheduled"]:
+        # If already cancelled, just return success
+        if current_status in ["cancelled", "rejected"]:
+             print(f"🚨 [REJECT API] Appointment already {current_status}. Returning success.")
+             return {"message": "Appointment cancelled successfully", "status": current_status}
+        
+        print(f"🚨 [REJECT API] Invalid status for cancellation: {current_status}")
         raise HTTPException(status_code=400, detail="This appointment cannot be cancelled")
 
     # Update appointment status and store rejection reason
+    new_status = "rejected" if is_doctor else "cancelled"
     update_data = {
-        "status": "rejected" if is_doctor else "cancelled",
-        "cancelled_by": "doctor" if is_doctor else "patient"
+        "status": new_status,
+        "cancelled_by": "doctor" if is_doctor else "patient",
+        "updatedAt": datetime.utcnow()
     }
     if reason:
         update_data["rejection_reason"] = reason
         update_data["is_last_minute"] = True  # Flag for last minute cancellations
-    
+
+    # Diagnostic logging: show appointment and update payload
+    print(f"🚨 [REJECT API] Executing update on {appointment_id}: {update_data}")
+
     result = await db.appointments.update_one(
         {"_id": ObjectId(appointment_id)},
         {"$set": update_data}
     )
 
-    if result.modified_count == 0:
-        raise HTTPException(status_code=400, detail="Failed to reject/cancel appointment")
+    print(f"🚨 [REJECT API] Update result: matched={result.matched_count}, modified={result.modified_count}")
+
+    # Verify the update immediately
+    verified_apt = await db.appointments.find_one({"_id": ObjectId(appointment_id)})
+    print(f"🚨 [REJECT API] Verification: status is now '{verified_apt.get('status')}'")
+
+    if verified_apt.get("status") != new_status:
+         print(f"🚨 [REJECT API] CRITICAL ERROR: Update appeared to succeed but verification failed!")
 
     # Create notifications for the other party
     try:
@@ -650,7 +684,7 @@ async def reject_appointment(appointment_id: str, reason: str = None, user_info 
     except Exception as e:
         print(f"Warning: Failed to create rejection notification: {e}")
 
-    return {"message": "Appointment cancelled successfully"}
+    return {"message": "Appointment cancelled successfully", "status": new_status}
 
 @router.put("/{appointment_id}/complete")
 async def complete_appointment(appointment_id: str, user_info = Depends(get_current_user_with_role)):
@@ -672,7 +706,7 @@ async def complete_appointment(appointment_id: str, user_info = Depends(get_curr
 
     # Check if doctor has access to this appointment
     doctor_ids = await get_doctor_ids_for_user(db, user_info["user_id"])
-    if appointment["doctor_id"] not in doctor_ids:
+    if str(appointment.get("doctor_id")) not in doctor_ids:
         raise HTTPException(status_code=403, detail="Cannot complete this appointment")
 
     # Check if appointment can be completed (must be approved or scheduled)
@@ -737,9 +771,9 @@ async def mark_appointment_missed(appointment_id: str, user_info = Depends(get_c
     has_access = False
     if user_info["role"] == "doctor":
         doctor_ids = await get_doctor_ids_for_user(db, user_info["user_id"])
-        has_access = appointment["doctor_id"] in doctor_ids
+        has_access = str(appointment.get("doctor_id")) in doctor_ids
     else:
-        has_access = appointment["patient_id"] == user_info["user_id"]
+        has_access = str(appointment.get("patient_id")) == user_info["user_id"]
 
     if not has_access:
         raise HTTPException(status_code=403, detail="Cannot modify this appointment")
@@ -812,7 +846,7 @@ async def check_missed_appointments(user_info = Depends(get_current_user_with_ro
     for appointment in past_appointments:
         # Check if doctor has access to this appointment
         doctor_ids = await get_doctor_ids_for_user(db, user_info["user_id"])
-        if appointment["doctor_id"] not in doctor_ids:
+        if str(appointment.get("doctor_id")) not in doctor_ids:
             continue
             
         # Mark as missed
@@ -995,7 +1029,7 @@ async def submit_appointment_feedback(
             raise HTTPException(status_code=400, detail="Can only submit feedback for completed appointments")
 
         # Verify the user is the patient who had the appointment
-        if appointment["patient_id"] != user_info["user_id"]:
+        if str(appointment.get("patient_id")) != user_info["user_id"]:
             raise HTTPException(status_code=403, detail="Not authorized to submit feedback for this appointment")
 
         # Get user details for email
